@@ -8,6 +8,6 @@
 
 require_once('util_lib.php');
 
-get_categories();
+$cat_arr = get_categories();
 
-
+display_categories($cat_arr);
