@@ -115,3 +115,23 @@ function get_book_details($isbn)
     // no need to turn result to array
     return $result->fetch_assoc();
 }
+
+/**
+ * @param $cart
+ *
+ * get the total price of a cart
+ */
+function calculate_total_price($cart)
+{
+    return 7;
+}
+
+/**
+ * @param $cart
+ *
+ * get the total numbers of items in a cart
+ */
+function calculate_items($cart)
+{
+    return 7;
+}
