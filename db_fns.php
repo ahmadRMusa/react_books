@@ -8,8 +8,6 @@
 
 /**
  * @param $result
- *
- *
  * get result from database and transform it to an index array
  *
  */
@@ -24,6 +22,13 @@ function db_result_to_array($result)
     return $res_array;
 }
 
+/**
+ * @return mysqli
+ * @throws Exception
+ *
+ * db connection
+ *
+ */
 function db_connect()
 {
     $servername = "localhost";
@@ -36,6 +41,8 @@ function db_connect()
 
     // Check connection
     if (!$conn) {
+
+        // TODO: will not stop when there is something wrong?
         throw new Exception('Could not connect to database server');
     }
 
