@@ -120,7 +120,124 @@ function display_book_details($book)
 
 }
 
-function display_cart($cart)
+function display_cart($cart, $change = true, $images = 1)
 {
+
+    $bgcolor = "#cccccc";
+    $center_align = "center";
+
+    // table header
+    $colspan_iamge = $images + 1;
+
+    echo <<< TABLE_HEADER
+
+    <table border="0" width="100%" cellspacing="0">
+    <form action="show_cart.php" method="post">
+    <tr>
+        <th colspan='$colspan_iamge' bgcolor='$bgcolor'>Item</th>
+        <th bgcolor='$bgcolor'>Price</th>
+        <th bgcolor='$bgcolor'>Quantity</th>
+        <th bgcolor='$bgcolor'>Total</th>
+    </tr>
+
+TABLE_HEADER;
+
+    // table body
+    foreach ($cart as $isbn => $qty) {
+
+        $book_detail = get_book_details($isbn);
+        $book_title = $book_detail['title'];
+        $book_author = $book_detail['author'];
+        $book_price = number_format($book_detail['price'], 2);
+        $total_price = $book_price * $qty;
+
+        echo "<tr>";
+
+        // display image if needed
+        if ($images == true) {
+            echo "<td align='left'>";
+            $image_path = "images/" . $isbn . ".jpg";
+            if (file_exists($image_path)) {
+                $size = GetImageSize($image_path);
+                // Index 0 and 1 contains respectively the width and the height of the image.
+                $img_width = $size[0];
+                $img_height = $size[1];
+                if ($img_width > 0 && $img_height > 0) {
+                    echo <<< IMAGE_DISPLAY
+                    
+                    <img src="$image_path" style="border: 1px solid black" width="$img_width" height="$img_height"/>
+
+IMAGE_DISPLAY;
+
+                } else {
+                    echo "&nbsp;";
+                }
+            }
+            echo "</td>";
+        }
+
+        // display a link to that specific item
+
+        echo <<< SPECIFIC_ITEM
+
+        <td align='left'><a href='show_book.php?isbn=$isbn'>$book_title</a> by $book_author</td>
+
+SPECIFIC_ITEM;
+
+        // price
+        echo <<< SHOW_PRICE
+        
+        <td align='$center_align'>$book_price</td>
+
+SHOW_PRICE;
+
+        // can quantities when change is enabled
+        if ($change === true) {
+            echo <<< EDITABLE_QUANTITY
+
+        <td align="$center_align"><input type='text' name='$isbn' value='$qty' size='3'></td>
+
+EDITABLE_QUANTITY;
+
+        } else {
+            echo <<< NON_EDITABLE_QUANTITY
+        
+        <td align="$center_align">$qty</td>
+        
+NON_EDITABLE_QUANTITY;
+        }
+
+        // total price of a specific item
+        echo <<< ITEM_TOTAL_PRICE
+
+        <td align="$center_align">$$total_price</td>\n
+
+ITEM_TOTAL_PRICE;
+
+    }
+
+    // display the summary
+    $summary_colspan = 2 + $images;
+    $summary_items = $_SESSION['items'];
+    $summary_total_price = number_format($_SESSION['total_price'], 2);
+
+    echo <<< SUMMARY_ORDER
+
+    <tr>
+    <th colspan='$summary_colspan' bgcolor='$bgcolor'>&nbsp;</th>
+    <th align='$center_align' bgcolor='$bgcolor'>$summary_items</th>
+    <th align='$center_align'bgcolor='$bgcolor'>$summary_total_price</th>
+    </tr>
+
+SUMMARY_ORDER;
+
+    // a button save order modification
+    if ($change === true) {
+
+    }
+
+
+    // end of the table
+    echo "</form></table>";
 
 }

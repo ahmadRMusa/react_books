@@ -10,3 +10,7 @@ require_once('util_lib.php');
 $cat_arr = get_categories();
 
 display_categories($cat_arr);
+
+if (1 === true) {
+    echo "yes";
+}

@@ -54,16 +54,20 @@ if ($_SESSION['cart'] && array_count_values($_SESSION['cart'])) {
 }
 
 // continue on shopping in the previous directory
-$target = "index.php";
+
 
 if ($new_item) {
     $detail = get_book_details($new_item);
     if ($detail['catid']) {
-        $target = "show_cat.php?catid=" . $detail['catid'];
+        $url = "show_cat.php";
+        $query_string = array('catid' => $detail['catid']);
+        display_hyperlink_button($url, 'Continue Shopping', $query_string);
     }
+} else {
+    $url = "index.php";
+    display_hyperlink_button($url, 'Continue Shopping');
 }
 
-display_hyperlink_button($target, 'Continue Shopping');
 display_hyperlink_button('checkout.php', 'Place your Order');
 
 
