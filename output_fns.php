@@ -191,7 +191,7 @@ SPECIFIC_ITEM;
 
 SHOW_PRICE;
 
-        // can quantities when change is enabled
+        // can quantities when change parameter is enabled
         if ($change === true) {
             echo <<< EDITABLE_QUANTITY
 
@@ -234,8 +234,20 @@ SUMMARY_ORDER;
     // a button save order modification
     if ($change === true) {
 
-    }
+        echo <<< SAVE_ENABLED
 
+        <tr>
+        <td colspan='$summary_colspan'>&nbsp;</td>
+        <td align='$center_align'>
+            <input type='hidden' name='save' value='true'>
+            <input type='submit' value='save changes'>
+        </td>
+        </tr>
+
+SAVE_ENABLED;
+
+
+    }
 
     // end of the table
     echo "</form></table>";

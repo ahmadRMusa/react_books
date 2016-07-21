@@ -45,6 +45,20 @@ if ($new_item) {
 
 }
 
+// if user update the order, update session
+if (isset($_POST['save'])) {
+    foreach ($_SESSION['cart'] as $isbn => $qty) {
+        if (intval($_POST[$isbn]) === 0) {
+            unset($_SESSION['cart'][$isbn]);
+        } else {
+            $_SESSION['cart'][$isbn] = $_POST[$isbn];
+        }
+    }
+
+    $_SESSION['total_price'] = calculate_total_price($_SESSION['cart']);
+    $_SESSION['items'] = calculate_items($_SESSION['cart']);
+}
+
 // TODO: Users can change the quantity and save
 if (isset($_POST['save'])) {
 
