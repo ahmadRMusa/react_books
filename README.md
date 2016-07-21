@@ -16,9 +16,11 @@ ___
 
 ___
 ## Functionality Details
+
 ### Order Books
 1. Add books to shopping cart without refreshing page.
 2. View and update order before place order.
+
 ### Comment
 1. Add and reply comment to a product.
 2. Only show first level replies the first time page loaded
