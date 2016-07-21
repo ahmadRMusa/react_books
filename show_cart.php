@@ -6,6 +6,14 @@
  * Time: 1:41 PM
  */
 
+/**
+ *
+ * TODO: BUG here, when refresh this page, you will purchase same item again
+ *
+ * TODO: Add to cart without going to this page
+ *
+ *
+ */
 require_once('util_lib.php');
 
 session_start();

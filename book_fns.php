@@ -118,20 +118,48 @@ function get_book_details($isbn)
 
 /**
  * @param $cart
+ * @return float
+ * @throws Exception
  *
- * get the total price of a cart
+ *
  */
 function calculate_total_price($cart)
 {
-    return 7;
+    $total_price = 0.0;
+
+    if (is_array($cart) && array_count_values($cart)) {
+
+        $conn = db_connect();
+        foreach ($cart as $isbn => $qty) {
+            $query = "select price from books where isbn='$isbn';";
+            $result = $conn->query($query);
+            if ($result) {
+                $item = $result->fetch_assoc();
+                $item_price = $item['price'] * $qty;
+                $total_price += $item_price;
+            }
+        }
+
+    }
+
+    return $total_price;
+
 }
 
 /**
  * @param $cart
+ * @return int
  *
- * get the total numbers of items in a cart
+ *
  */
 function calculate_items($cart)
 {
-    return 7;
+    $total_items = 0;
+    if (is_array($cart) && array_count_values($cart)) {
+        foreach ($cart as $isbn => $qty) {
+            $total_items += $qty;
+        }
+    }
+
+    return $total_items;
 }
