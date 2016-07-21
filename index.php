@@ -13,4 +13,3 @@ $cat_arr = get_categories();
 display_categories($cat_arr);
 
 do_html_url('login.php', 'Go to Login Page');
-
