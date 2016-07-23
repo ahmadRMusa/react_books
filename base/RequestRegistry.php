@@ -8,6 +8,8 @@
 
 namespace base;
 
+use \controller\Request;
+
 /**
  * Class RequestRegistry
  * @package base
@@ -37,7 +39,7 @@ class RequestRegistry extends Registry
     {
         $inst = self::instance();
         if (is_null($inst->get("request"))) {
-            $inst->set('request', new \controller\Request());
+            $inst->set('request', new Request());
         }
         return $inst->get("request");
     }

@@ -11,17 +11,8 @@ namespace base;
 
 abstract class Registry
 {
-
-    private static $instance = null;
-    private $values = array();
-
-    private function __construct()
-    {
-    }
-
     abstract protected function get($key);
 
     abstract protected function set($key, $val);
-
 
 }
