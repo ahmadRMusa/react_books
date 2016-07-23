@@ -13,6 +13,7 @@
  * @Deprecated we will not use this class in the future
  */
 use \domain\DomainObject;
+use \domain\Book;
 
 class BookMapper extends Mapper
 {
@@ -46,6 +47,11 @@ class BookMapper extends Mapper
     protected function selectStmt()
     {
         // TODO: Implement selectStmt() method.
+    }
+
+    protected function targetClass()
+    {
+        return Book::class;
     }
 
 
