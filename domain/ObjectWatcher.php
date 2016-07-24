@@ -23,7 +23,14 @@ use \domain\DomainObject;
 class ObjectWatcher
 {
 
+    // Tracking all objects in a system via the $all property
     private $all = array();
+
+    // Unit of Work
+    private $dirty = array();
+    private $new = array();
+    private $delete = array();
+
     private static $instance = null;
 
     private function __construct()
@@ -59,6 +66,56 @@ class ObjectWatcher
         }
         return null;
     }
+
+    // Unit of Work
+
+    public static function addDelete(DomainObject $object)
+    {
+        $inst = self::instance();
+        $inst->delete[$inst->globalKey($object)] = $object;
+    }
+
+    public static function addDirty(DomainObject $object)
+    {
+        $inst = self::instance();
+        if (!in_array($object, $inst->new, true)) {
+            $inst->dirty[$inst->globalKey($object)] = $object;
+        }
+    }
+
+    public static function addNew(DomainObject $object)
+    {
+        $inst = self::instance();
+        // we don't yet have an id now, have no way and no need to check
+        $inst->new[] = $object;
+    }
+
+    public static function addClean(DomainObject $object)
+    {
+        $inst = self::instance();
+        unset($inst->delete[$inst->globalKey($object)]);
+        unset($inst->dirty[$inst->globalKey($object)]);
+        $inst->new = array_filter($inst->new,
+            function ($a) use ($object) {
+                return !($a === $object);
+            });
+    }
+
+    public function performOperations()
+    {
+        foreach ($this->dirty as $key => $obj) {
+            $obj->finder()->update($obj);
+        }
+
+        foreach ($this->new as $key => $obj) {
+            $obj->finder()->insert($obj);
+        }
+
+        $this->dirty = array();
+        $this->new = array();
+    }
+
+    // Helper functions
 
     /**
      * @param $classname

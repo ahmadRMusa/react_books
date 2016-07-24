@@ -9,7 +9,9 @@
 namespace domain;
 
 
-class Book
+class Book extends DomainObject
 {
+
+    // TODO: we should take care of the Unit of Work Pattern when using setters and getters here
 
 }
