@@ -8,6 +8,10 @@
  */
 abstract class DomainObjectFactory
 {
-    abstract function createObject(array $array);
+    /**
+     * @param array $array an associative array that key is every field of the db
+     * @return mixed
+     */
+    public abstract function createObject(array $array);
 
 }

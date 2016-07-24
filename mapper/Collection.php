@@ -7,15 +7,14 @@
  * Time: 3:26 PM
  */
 use \domain\DomainObject;
+use DomainObjectFactory;
 
 abstract class Collection implements \Iterator
 {
-
-    // TODO: move this attribute out of this class
-    protected $mapper;
+    protected $dof;
     // mark the index
     protected $total = 0;
-    // raw data get from database query
+    // raw data get from database query, an associative array that which id is the key
     protected $raw = array();
 
     private $result;
@@ -25,18 +24,18 @@ abstract class Collection implements \Iterator
 
     /**
      * Collection constructor.
+     * @param array|null $raw
+     * @param \DomainObjectFactory $dof
      *
-     * The constructor expects to be called with no arguments or with two
-     * (the raw data that may eventually be transformed into objects and a mapper reference).
      */
-    function __construct(array $raw = null, Mapper $mapper)
+    function __construct(array $raw = null, DomainObjectFactory $dof)
     {
-        if (!is_null($raw) && !is_null($mapper)) {
+        if (!is_null($raw) && !is_null($dof)) {
             $this - $raw = $raw;
             $this->total = count($raw);
         }
 
-        $this->mapper = $mapper;
+        $this->$dof = $dof;
 
     }
 
@@ -80,7 +79,7 @@ abstract class Collection implements \Iterator
         }
 
         if (isset($this->raw[$num])) {
-            $this->objects[$num] = $this->mapper->createObject(raw[$num]);
+            $this->objects[$num] = $this->dof->createObject($this->raw[num]);
             return $this->objects[$num];
         }
 
