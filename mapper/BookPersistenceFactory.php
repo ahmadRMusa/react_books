@@ -6,6 +6,8 @@
  * Date: 7/24/16
  * Time: 12:05 AM
  */
+namespace mapper;
+
 class BookPersistenceFactory extends PersistenceFactory
 {
     public function getCollection(array $array)

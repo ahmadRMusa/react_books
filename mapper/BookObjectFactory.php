@@ -7,7 +7,10 @@
  * Time: 1:48 AM
  */
 
+namespace mapper;
+
 use \domain\Book;
+use \domain\DomainObject;
 
 class BookObjectFactory extends DomainObjectFactory
 {
@@ -15,13 +18,39 @@ class BookObjectFactory extends DomainObjectFactory
      * @param array $array raw data get from database query
      * @return Book
      */
-    function createObject(array $array)
+
+    public function createObject(array $array)
     {
-        // get raw data and then assemble a new book
-        $obj = new Book();
+        $old = $this->getFromMap($array['id']);
 
-        // setters
+        if (!is_null($old)) {
+            return $old;
+        }
 
+        $obj = $this->doCreateObject($array);
+        $this->addToMap($obj);
         return $obj;
     }
+
+    protected function doInsert(DomainObject $obj)
+    {
+        // TODO: Implement doInsert() method.
+    }
+
+    protected function update(DomainObject $obj)
+    {
+        // TODO: Implement update() method.
+    }
+
+    protected function selectStmt()
+    {
+        // TODO: Implement selectStmt() method.
+    }
+
+    protected function targetClass()
+    {
+        return Book::class;
+    }
+
+
 }

@@ -10,7 +10,6 @@
 namespace domain;
 
 use base\HelperFactory;
-use \domain\ObjectWatcher;
 
 abstract class DomainObject
 {

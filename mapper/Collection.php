@@ -6,6 +6,8 @@
  * Date: 7/23/16
  * Time: 3:26 PM
  */
+namespace mapper;
+
 use \domain\DomainObject;
 use DomainObjectFactory;
 

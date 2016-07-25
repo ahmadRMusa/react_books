@@ -7,6 +7,8 @@
  * Time: 3:27 PM
  */
 
+namespace mapper;
+
 /**
  * Class BookMapper
  *
@@ -22,37 +24,5 @@ class BookMapper extends Mapper
     {
         // prepare statements for query
     }
-
-    function getCollection()
-    {
-        // get a collection of books
-    }
-
-    protected function doCreateObject(array $array)
-    {
-        // TODO: Implement doCreateObject() method.
-        // return an Book Object to Client
-    }
-
-    protected function doInsert(DomainObject $obj)
-    {
-        // TODO: Implement doInsert() method.
-    }
-
-    protected function update(DomainObject $obj)
-    {
-        // TODO: Implement update() method.
-    }
-
-    protected function selectStmt()
-    {
-        // TODO: Implement selectStmt() method.
-    }
-
-    protected function targetClass()
-    {
-        return Book::class;
-    }
-
 
 }

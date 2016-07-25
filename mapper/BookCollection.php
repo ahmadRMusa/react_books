@@ -7,6 +7,8 @@
  * Time: 4:37 PM
  */
 
+namespace mapper;
+
 /**
  * Class BookCollection
  *
