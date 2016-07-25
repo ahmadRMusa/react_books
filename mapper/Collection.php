@@ -9,7 +9,7 @@
 namespace mapper;
 
 use \domain\DomainObject;
-use DomainObjectFactory;
+use \mapper\DomainObjectFactory;
 
 abstract class Collection implements \Iterator
 {

@@ -11,12 +11,16 @@ namespace mapper;
 
 abstract class PersistenceFactory
 {
-    abstract protected function getCollection(array $array);
+    abstract public function getCollection(array $array);
 
-    abstract protected function getDomainObjectFactory();
+    abstract public function getDomainObjectFactory();
+
+    abstract public function getSelectionFactory();
+
+    abstract public function getUpdateFactory();
 
     /**
-     * @param $domainObject a domain type
+     * @param $domainObject a domain type. for example, BookPersistenceFactory
      */
     public function getFactory($domainObject)
     {

@@ -19,7 +19,7 @@ class BookUpdateFactory extends UpdateFactory
         $this->doUpdate($book);
     }
 
-    function doUpdate(Book $book)
+    private function doUpdate(Book $book)
     {
         $isbn = $book->getIsbn();
         $cond = null;

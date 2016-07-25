@@ -21,4 +21,14 @@ class BookPersistenceFactory extends PersistenceFactory
     {
         return new BookObjectFactory();
     }
+
+    public function getSelectionFactory()
+    {
+        return new BookUpdateFactory();
+    }
+
+    public function getUpdateFactory()
+    {
+        return new BookSelectionFactory();
+    }
 }
