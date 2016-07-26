@@ -81,7 +81,7 @@ function display_books($book_array)
 {
 
     if (!is_array($book_array)) {
-        echo '<p>no books currently available!</p>';
+        echo '<p>no book currently available!</p>';
         return;
     }
 

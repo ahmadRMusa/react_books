@@ -10,6 +10,11 @@ namespace mapper;
 
 class BookPersistenceFactory extends PersistenceFactory
 {
+    public function getIdentityObject()
+    {
+        return new BookIdentityObject();
+    }
+
     public function getCollection(array $array)
     {
         // If the child does not define a constructor then it may be inherited from the parent class

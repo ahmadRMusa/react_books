@@ -19,10 +19,14 @@ abstract class PersistenceFactory
 
     abstract public function getUpdateFactory();
 
+    abstract public function getIdentityObject();
+
+    abstract static public function getFinder($domain_obj_type);
+
     /**
      * @param $domainObject a domain type. for example, BookPersistenceFactory
      */
-    public function getFactory($domainObject)
+    public static function getFactory($domainObject)
     {
         // TODO: implementation
     }

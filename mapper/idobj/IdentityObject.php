@@ -22,7 +22,7 @@ class IdentityObject
         }
 
         if (!is_null($field)) {
-
+            $this->field($field);
         }
 
     }

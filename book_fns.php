@@ -72,7 +72,7 @@ function get_category_name($catid)
 function get_books($catid)
 {
     $conn = db_connect();
-    $query = "select title, author,isbn from books where catid='" . $catid . "'";
+    $query = "select title, author,isbn from book where catid='" . $catid . "'";
     $result = $conn->query($query);
 
     if (!$result) {
@@ -84,7 +84,7 @@ function get_books($catid)
 
     if ($num_books === 0) {
 
-        echo 'no books under this category for now';
+        echo 'no book under this category for now';
         return false;
     }
 
@@ -104,7 +104,7 @@ function get_books($catid)
 function get_book_details($isbn)
 {
     $conn = db_connect();
-    $query = "select * from books where isbn='" . $isbn . "'";
+    $query = "select * from book where isbn='" . $isbn . "'";
     $result = $conn->query($query);
 
     if (!$result) {
@@ -131,7 +131,7 @@ function calculate_total_price($cart)
 
         $conn = db_connect();
         foreach ($cart as $isbn => $qty) {
-            $query = "select price from books where isbn='$isbn';";
+            $query = "select price from book where isbn='$isbn';";
             $result = $conn->query($query);
             if ($result) {
                 $item = $result->fetch_assoc();
