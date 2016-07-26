@@ -13,7 +13,15 @@ require_once 'base/NamespaceRegistry.php';
 require_once 'vendor/autoload.php';
 
 $autoload = new NamespaceRegistry(__DIR__);
+
+$autoload->addNamespace('\\', '');
+
 $autoload->addNamespace('mapper', 'mapper/');
+$autoload->addNamespace('mapper', 'mapper/collection');
+$autoload->addNamespace('mapper', 'mapper/collection/books');
+
+$autoload->addNamespace('domain', 'domain/');
+
 $autoload->register();
 
 
@@ -24,7 +32,9 @@ display_categories($cat_arr);
 do_html_url('login.php', 'Go to Login Page');
 
 $test = new mapper\TempTest();
-$test->runTest();
+// $test->runTest();
+
+$bc = new mapper\BookCollection();
 
 
 

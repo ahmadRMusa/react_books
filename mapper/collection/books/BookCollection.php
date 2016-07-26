@@ -9,6 +9,9 @@
 
 namespace mapper;
 
+use mapper\Collection;
+use domain\IBookCollection;
+
 /**
  * Class BookCollection
  *
@@ -16,6 +19,11 @@ namespace mapper;
  */
 class BookCollection extends Collection implements IBookCollection
 {
+    function __construct()
+    {
+        echo "test";
+    }
+
     function targetClass()
     {
         // TODO: correct implementation? return a string?
