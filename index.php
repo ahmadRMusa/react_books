@@ -6,13 +6,13 @@
  * Time: 4:24 PM
  */
 
-// set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require_once('util_lib.php');
+require_once 'base/NamespaceRegistry.php';
+require_once 'vendor/autoload.php';
 
-require __DIR__ . '/vendor/autoload.php';
-
-spl_autoload_register(function ($classname) {
+/*spl_autoload_register(function ($classname) {
 
     // mapper\ namespace for the on loading class
     // TODO: Should not hard coded here
@@ -36,7 +36,12 @@ spl_autoload_register(function ($classname) {
         require_once $file;
     }
 
-});
+});*/
+
+$autoload = new NamespaceRegistry();
+
+//$autoload->register();
+//$autoload->addNamespace('mapper', 'mapper/');
 
 $cat_arr = get_categories();
 
