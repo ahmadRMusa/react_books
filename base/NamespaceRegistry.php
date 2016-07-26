@@ -64,6 +64,14 @@ class NamespaceRegistry
      */
     protected $prefixes = array();
 
+    private $project_dir;
+
+    public function __construct($project_dir)
+    {
+        // normalize project dir
+        $this->project_dir = '/' . trim($project_dir, '/') . '/';
+    }
+
     /**
      * Register loader with SPL autoloader stack.
      *
@@ -115,7 +123,7 @@ class NamespaceRegistry
         $namespace = $namespace_class;
 
         // work backwards through the namespace names of the fully-qualified class name to find a mapped file name
-        while (false !== $pos = strrpos($namespace_class, '\\')) {
+        while (false !== $pos = strrpos($namespace, '\\')) {
 
             // retain the trailing namespace separator in the prefix
             $namespace = substr($namespace_class, 0, $pos + 1);
@@ -156,9 +164,8 @@ class NamespaceRegistry
         // look through base directories for this namespace prefix
         foreach ($this->prefixes[$prefix] as $base_dir) {
 
-            $project_dir = __DIR__ . "/";
             // replace namespace separators with directory separators in the class name, append with .php
-            $file = $project_dir . $base_dir . str_replace('\\', '/', $classname) . '.php';
+            $file = $this->project_dir . $base_dir . str_replace('\\', '/', $classname) . '.php';
 
             // if the mapped file exists, require it
             if ($this->requireFile($file)) {
