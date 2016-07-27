@@ -21,11 +21,26 @@ class DomainObjectAssembler
 
     private $factory;
 
-    protected static $db_connection;
+    private $statements = array();
+
+    protected static $db_connection = null;
 
     function __construct(PersistenceFactory $factory)
     {
         $this->factory = $factory;
+
+        if (!isset(self::$db_connection)) {
+            self::connect_db();
+        }
+    }
+
+    public static function getConnectionObj()
+    {
+        if (!isset(self::$db_connection)) {
+            self::connect_db();
+        }
+
+        return self::$db_connection;
     }
 
     /**
@@ -35,11 +50,10 @@ class DomainObjectAssembler
     {
         $selection_factory = $this->factory->getSelectionFactory();
         list($selection, $value) = $selection_factory->newSelection($identityObject);
-        echo $selection;
-        echo $value[0];
-        // $stmt = $this->getStatement($selection);
-        // get raw data
-
+        $stmt = $this->getStatement($selection, $value);
+        $stmt->execute($value);
+        $raw = $stmt->fetchAll();
+        print_r($raw);
 
     }
 
@@ -57,16 +71,47 @@ class DomainObjectAssembler
         $update_factory = $this->factory->getUpdateFactory();
         list($update_query, $value) = $update_factory->newUpdate($domainObject);
         $stmt = $this->getStatement($update_query);
+
     }
 
     /**
-     * @param $str
-     *
-     * TODO: prepare statement
+     * @param $statement
+     * @param $values
+     * @return mixed
      */
-    private function getStatement($str)
+    private function getStatement($statement, $values)
     {
         // prepare the statement here
+        if (!isset($this->statements[$statement])) {
+            $this->statements[$statement] = self::getConnectionObj()->prepare($statement);
+        }
+
+        return $this->statements[$statement];
+
+    }
+
+    private function connect_db()
+    {
+        $db_info = \ApplicationRegistry::getDBInfo();
+
+        if (is_null($db_info)) {
+            throw new \Exception("Database info required");
+        }
+
+        self::$db_connection = new \PDO('mysql:host=localhost;dbname=react_book', "root", "susie19910401");
+
+    }
+
+    private function getTypeString($values)
+    {
+        // TODO: check valid and blob?
+        $types = array('integer' => 'i', "double" => "d", "string" => "s");
+        $type_str = "";
+        foreach ($values as $value) {
+            $type_str = $type_str . $types[gettype($value)];
+        }
+
+        return $type_str;
 
     }
 

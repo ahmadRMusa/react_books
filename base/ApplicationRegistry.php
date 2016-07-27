@@ -5,8 +5,7 @@
  * Date: 7/23/16
  * Time: 12:23 AM
  */
-
-namespace base;
+require_once 'Registry.php';
 
 /**
  * Class ApplicationRegistry
@@ -26,6 +25,14 @@ class ApplicationRegistry extends Registry
 
     private function __construct()
     {
+    }
+
+    /**
+     * @return array with db information
+     */
+    public static function getDBInfo()
+    {
+        return array('servername' => "localhost", "username" => "root", "password" => "susie19910401", "dbname" => "react_book");
     }
 
     static function instance()
