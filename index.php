@@ -6,18 +6,18 @@
  * Time: 4:24 PM
  */
 
-// set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require_once 'util_lib.php';
 require_once 'base/NamespaceRegistry.php';
 require_once 'vendor/autoload.php';
-require_once 'base/ApplicationRegistry.php';
-require_once 'base/Registry.php';
+// require_once 'base/ApplicationRegistry.php';
+// require_once 'base/Registry.php';
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
 // TODO: Global?
-$autoload->addNamespace('\\', '');
+// $autoload->addNamespace('\\', '');
 $autoload->addNamespace('\\', 'base/');
 
 $autoload->addNamespace('mapper', 'mapper/');
@@ -34,6 +34,7 @@ $autoload->addNamespace('domain', 'domain/');
 
 $autoload->register();
 
+\ApplicationRegistry::instance();
 
 $cat_arr = get_categories();
 

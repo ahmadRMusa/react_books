@@ -5,7 +5,7 @@
  * Date: 7/23/16
  * Time: 12:23 AM
  */
-require_once 'Registry.php';
+//require_once 'Registry.php';
 
 /**
  * Class ApplicationRegistry
@@ -17,7 +17,7 @@ require_once 'Registry.php';
  * and provides some guarantee that only a single Request instance will be available across the system.
  *
  */
-class ApplicationRegistry extends Registry
+class ApplicationRegistry extends \Registry
 {
 
     private static $instance = null;

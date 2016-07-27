@@ -98,6 +98,7 @@ class DomainObjectAssembler
             throw new \Exception("Database info required");
         }
 
+        // TODO: Refactor DB info
         self::$db_connection = new \PDO('mysql:host=localhost;dbname=react_book', "root", "susie19910401");
 
     }

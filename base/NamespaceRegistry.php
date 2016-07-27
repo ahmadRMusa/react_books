@@ -136,8 +136,15 @@ class NamespaceRegistry
     public function loadClass($namespace_class)
     {
         // the current namespace prefix. We should get one here if the class has a namespace.
-        // TODO: \mapper\Tester, or just Tester without any namespace?
         $namespace = $namespace_class;
+
+        // a global namespace
+        if (!strrpos($namespace, '\\')) {
+            $mapped_file = $this->loadMappedFile("\\", $namespace);
+            if ($mapped_file) {
+                return $mapped_file;
+            }
+        }
 
         // work backwards through the namespace names of the fully-qualified class name to find a mapped file name
         while (false !== $pos = strrpos($namespace, '\\')) {
