@@ -7,28 +7,43 @@
  * Time: 12:03 AM
  */
 
-namespace mapper;
+namespace mapper {
 
-abstract class PersistenceFactory
-{
-    abstract public function getCollection(array $array);
-
-    abstract public function getDomainObjectFactory();
-
-    abstract public function getSelectionFactory();
-
-    abstract public function getUpdateFactory();
-
-    abstract public function getIdentityObject();
-
-    abstract static public function getFinder($domain_obj_type);
-
-    /**
-     * @param $domainObject a domain type. for example, BookPersistenceFactory
-     */
-    public static function getFactory($domainObject)
+    abstract class PersistenceFactory
     {
-        // TODO: implementation
-    }
+        abstract public function getCollection(array $array);
 
+        abstract public function getDomainObjectFactory();
+
+        abstract public function getSelectionFactory();
+
+        abstract public function getUpdateFactory();
+
+        abstract public function getIdentityObject();
+
+        // TODO: refactor this part
+        // abstract static public function getFinder($domain_obj_type);
+        public static function getFinder($domain_object)
+        {
+            $finder = new DomainObjectAssembler(self::getFactory($domain_object));
+            return $finder;
+        }
+
+        /**
+         * @param $domain_object the name of the domain class
+         * @return mixed an persistence factory of a specific type
+         *
+         */
+        public static function getFactory($domain_object)
+        {
+            $class_name = $domain_object . "PersistenceFactory";
+            $namespace = "mapper\\";
+            $class = $namespace . $class_name;
+            // TODO: check if this class exists
+            $factory = new $class();
+            return $factory;
+        }
+
+    }
 }
+

@@ -12,13 +12,19 @@ require_once('util_lib.php');
 require_once 'base/NamespaceRegistry.php';
 require_once 'vendor/autoload.php';
 
-$autoload = new NamespaceRegistry(__DIR__);
+$autoload = NamespaceRegistry::getInstance(__DIR__);
 
+// TODO: Global?
 $autoload->addNamespace('\\', '');
-
 $autoload->addNamespace('mapper', 'mapper/');
 $autoload->addNamespace('mapper', 'mapper/collection');
 $autoload->addNamespace('mapper', 'mapper/collection/books');
+$autoload->addNamespace('mapper', 'mapper/objcreate');
+$autoload->addNamespace('mapper', 'mapper/objcreate/books');
+$autoload->addNamespace('mapper', 'mapper/idobj');
+$autoload->addNamespace('mapper', 'mapper/idobj/books');
+$autoload->addNamespace('mapper', 'mapper/query');
+$autoload->addNamespace('mapper', 'mapper/query/books');
 
 $autoload->addNamespace('domain', 'domain/');
 
@@ -32,9 +38,7 @@ display_categories($cat_arr);
 do_html_url('login.php', 'Go to Login Page');
 
 $test = new mapper\TempTest();
-// $test->runTest();
-
-$bc = new mapper\BookCollection();
+$test->runTest();
 
 
 

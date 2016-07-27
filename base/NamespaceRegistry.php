@@ -66,7 +66,24 @@ class NamespaceRegistry
 
     private $project_dir;
 
-    public function __construct($project_dir)
+    private static $instance = null;
+
+    /**
+     * @param null $project_dir
+     * @return NamespaceRegistry|null
+     *
+     * TODO: We should avoid parameters here
+     */
+    public static function getInstance($project_dir = null)
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self($project_dir);
+        }
+
+        return self::$instance;
+    }
+
+    private function __construct($project_dir = null)
     {
         // normalize project dir
         $this->project_dir = '/' . trim($project_dir, '/') . '/';

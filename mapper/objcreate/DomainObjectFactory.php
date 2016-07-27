@@ -14,7 +14,7 @@ use \domain\DomainObject;
 abstract class DomainObjectFactory
 {
     /**
-     * @param array $array an associative array that key is every field of the db
+     * @param array $array raw data from database. An associative array that key is every field of the db
      * @return mixed
      */
     public abstract function createObject(array $array);
@@ -42,6 +42,9 @@ abstract class DomainObjectFactory
     /**
      * @param $id
      * @return mixed|null
+     *
+     *
+     * TODO: This kind of methods can be replaced by selection factory
      *
      * find obj in identity map first then initialize a new one
      *

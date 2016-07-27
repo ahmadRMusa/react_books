@@ -14,9 +14,9 @@ class TempTest
 
     public function runTest()
     {
-        $factory = PersistenceFactory::getFactory("");
-        $idobj = $factory->getIdentityObject()->field('title')->eq('xxxx');
-        $finder = PersistenceFactory::getFinder();
+        $factory = PersistenceFactory::getFactory("Book");
+        $idobj = $factory->getIdentityObject()->field('title')->eq('advanced php');
+        $finder = PersistenceFactory::getFinder("Book");
         $collection = $finder->find($idobj);
 
         // output result

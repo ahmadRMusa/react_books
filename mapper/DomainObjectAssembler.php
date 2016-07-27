@@ -7,6 +7,7 @@
  */
 
 namespace mapper;
+
 use domain\DomainObject;
 
 /**
@@ -32,11 +33,11 @@ class DomainObjectAssembler
      */
     function find(IdentityObject $identityObject)
     {
-        $selection_factory = $this->factory->getSelectionFactory();
-        list($selection, $value) = $selection_factory->newSelection($identityObject);
-        $stmt = $this->getStatement($selection);
+        //$selection_factory = $this->factory->getSelectionFactory();
+        //list($selection, $value) = $selection_factory->newSelection($identityObject);
+        //$stmt = $this->getStatement($selection);
         // get raw data
-
+        echo "success!";
 
     }
 

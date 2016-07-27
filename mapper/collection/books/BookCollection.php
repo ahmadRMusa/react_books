@@ -9,13 +9,11 @@
 
 namespace mapper;
 
-use mapper\Collection;
 use domain\IBookCollection;
 
 /**
  * Class BookCollection
  *
- * TODO: IBookCollection no need for namespace?
  */
 class BookCollection extends Collection implements IBookCollection
 {
