@@ -17,11 +17,6 @@ use domain\IBookCollection;
  */
 class BookCollection extends Collection implements IBookCollection
 {
-    function __construct()
-    {
-        echo "test";
-    }
-
     function targetClass()
     {
         // TODO: correct implementation? return a string?

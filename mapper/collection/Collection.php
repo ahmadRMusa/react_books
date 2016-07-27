@@ -9,7 +9,6 @@
 namespace mapper;
 
 use \domain\DomainObject;
-use \mapper\DomainObjectFactory;
 
 abstract class Collection implements \Iterator
 {
@@ -27,21 +26,26 @@ abstract class Collection implements \Iterator
     /**
      * Collection constructor.
      * @param array|null $raw
-     * @param \DomainObjectFactory $dof
+     * @param \mapper\DomainObjectFactory $dof we now use Domain Object Factory to create a new object
      *
+     * wrap the raw data to a collection object so that we can operate on the raw data
      */
     function __construct(array $raw = null, DomainObjectFactory $dof)
     {
         if (!is_null($raw) && !is_null($dof)) {
-            $this - $raw = $raw;
+            $this->raw = $raw;
             $this->total = count($raw);
         }
 
-        $this->$dof = $dof;
+        $this->dof = $dof;
 
     }
 
-    // delegation
+    /**
+     * @return mixed
+     *
+     * delegation
+     */
     abstract function targetClass();
 
     // lazy load
@@ -50,13 +54,18 @@ abstract class Collection implements \Iterator
     }
 
 
-    // implement method from domain model interface
+    /**
+     * @param DomainObject $object
+     * @throws \Exception
+     *
+     * implement method from domain model interface
+     */
     function add(DomainObject $object)
     {
         // type checking
         $class = $this->targetClass();
         if (!($object instanceof $class)) {
-            throw new Exception("This is a {$class} collection!");
+            throw new \Exception("This is a {$class} collection!");
         }
 
         $this->notifyAccess();
@@ -67,6 +76,12 @@ abstract class Collection implements \Iterator
 
     }
 
+    /**
+     * @param $num
+     * @return mixed|null
+     *
+     *
+     */
     private function getRow($num)
     {
 
@@ -80,8 +95,9 @@ abstract class Collection implements \Iterator
             return $this->objects[$num];
         }
 
+        //
         if (isset($this->raw[$num])) {
-            $this->objects[$num] = $this->dof->createObject($this->raw[num]);
+            $this->objects[$num] = $this->dof->createObject($this->raw[$num]);
             return $this->objects[$num];
         }
 
@@ -113,22 +129,19 @@ abstract class Collection implements \Iterator
     }
 
     /**
-     * Move forward to next element
-     * @link http://php.net/manual/en/iterator.next.php
-     * @return void Any returned value is ignored.
-     * @since 5.0.0
+     * @return mixed|null
+     * return the current element if exists then move to the next element.
+     * return false if pointer is now at the end of the collection
      */
     public function next()
     {
         $row = $this->getRow($this->pointer);
         if ($row) {
             $this->pointer++;
-        }
 
-        /**
-         * TODO: How can we use next() method in a while loop as a end loop condition? Or should we return anything here?
-         */
+        }
         return $row;
+
     }
 
     /**

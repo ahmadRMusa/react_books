@@ -8,8 +8,6 @@
 
 namespace domain;
 
-use \domain\DomainObject;
-
 /**
  * Class ObjectWatcher
  * @package domain

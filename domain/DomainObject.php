@@ -9,8 +9,6 @@
  */
 namespace domain;
 
-use base\HelperFactory;
-
 abstract class DomainObject
 {
 
@@ -20,7 +18,7 @@ abstract class DomainObject
      * DomainObject constructor.
      * @param null $id
      * @param bool $shouldPersist this parameter indicates that if we should persist a new created object,
-     * maybe this object is just for test use
+     * maybe this object is just for test usage or we are just query it
      *
      * The constructor method marks the current object as new (by calling markNew())
      * if no $id property has been passed to it

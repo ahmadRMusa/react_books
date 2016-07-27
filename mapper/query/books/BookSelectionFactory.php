@@ -13,6 +13,7 @@ class BookSelectionFactory extends SelectionFactory
     function newSelection(IdentityObject $identityObject)
     {
         $fields = implode(',', $identityObject->getObjectFields());
+        // TODO: Can we just change it to * ?
         $core = "SELECT {$fields} FROM books";
         list($where, $values) = $this->buildSelection($identityObject);
         return array($core . " " . $where, $values);

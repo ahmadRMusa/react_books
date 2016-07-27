@@ -6,6 +6,8 @@
  * Date: 7/23/16
  * Time: 5:52 PM
  */
+namespace domain;
+
 class HelperFactory
 {
 

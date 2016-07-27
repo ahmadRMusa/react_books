@@ -5,6 +5,9 @@
  * User: jielou
  * Date: 7/24/16
  * Time: 6:42 PM
+ *
+ * An identity object (also called a Data Transfer Object by Alur et al.)
+ * encapsulates query criteria, thereby decoupling the system from database syntax.
  */
 namespace mapper;
 

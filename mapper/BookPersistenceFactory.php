@@ -15,11 +15,11 @@ class BookPersistenceFactory extends PersistenceFactory
         return new BookIdentityObject();
     }
 
-    public function getCollection(array $array)
+    public function getCollection(array $raw_data)
     {
         // If the child does not define a constructor then it may be inherited from the parent class
         // just like a normal class method (if it was not declared as private).
-        return new BookCollection($array, self::getDomainObjectFactory());
+        return new BookCollection($raw_data, self::getDomainObjectFactory());
     }
 
     public function getDomainObjectFactory()

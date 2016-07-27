@@ -45,6 +45,8 @@ class DomainObjectAssembler
 
     /**
      * @param IdentityObject $identityObject
+     * @return mixed
+     *
      */
     function find(IdentityObject $identityObject)
     {
@@ -53,8 +55,8 @@ class DomainObjectAssembler
         $stmt = $this->getStatement($selection, $value);
         $stmt->execute($value);
         $raw = $stmt->fetchAll();
-        print_r($raw);
-
+        $collection = $this->factory->getCollection($raw);
+        return $collection;
     }
 
     /**

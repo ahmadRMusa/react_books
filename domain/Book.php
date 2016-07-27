@@ -20,6 +20,17 @@ class Book extends DomainObject
     private $price;
     private $description;
 
+    public function __construct($isbn, $author, $title, $catid, $price, $description, $shouldPersist)
+    {
+        parent::__construct($isbn, $shouldPersist);
+        $this->author = $author;
+        $this->title = $title;
+        $this->catid = $catid;
+        $this->price = $price;
+        $this->description = $description;
+
+    }
+
     /**
      * @return mixed
      */

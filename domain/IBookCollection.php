@@ -8,8 +8,12 @@
  */
 namespace domain;
 
-use domain\DomainObject;
-
+/**
+ * Interface IBookCollection
+ * @package domain
+ *
+ * decouple domain and mapper
+ */
 interface IBookCollection extends \Iterator
 {
     function add(DomainObject $object);

@@ -21,8 +21,11 @@ namespace mapper {
 
         abstract public function getIdentityObject();
 
-        // TODO: refactor this part
-        // abstract static public function getFinder($domain_obj_type);
+        /**
+         * @param $domain_object
+         * @return DomainObjectAssembler with specific type of factory initiated
+         *
+         */
         public static function getFinder($domain_object)
         {
             $finder = new DomainObjectAssembler(self::getFactory($domain_object));

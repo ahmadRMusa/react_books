@@ -15,12 +15,14 @@ class TempTest
     public function runTest()
     {
         $factory = PersistenceFactory::getFactory("Book");
-        $idobj = $factory->getIdentityObject()->field('title')->eq('advanced php');
+        $idobj = $factory->getIdentityObject()->field('author')->eq('jie');
         $finder = PersistenceFactory::getFinder("Book");
         $collection = $finder->find($idobj);
-
         // output result
-        // print_r($collection);
+        while ($collection->current()) {
+            print_r($collection->next());
+            echo "|||||||||||||||";
+        }
     }
 
 }

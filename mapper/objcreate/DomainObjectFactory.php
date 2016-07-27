@@ -22,6 +22,7 @@ abstract class DomainObjectFactory
     // Identity map function
     protected function getFromMap($id)
     {
+        // TODO: where should we have this method?
         return ObjectWatcher::exists($this->targetClass(), $id);
     }
 
@@ -57,6 +58,8 @@ abstract class DomainObjectFactory
      * In createObject(), the new object is passed to addToMap() to prevent any clashes in the future.
      *
      * TODO: Anything related to Collection?
+     *
+     * TODO: This should be replaced by DomainObjectAssembler::find();
      *
      */
     public function find($id)
