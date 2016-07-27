@@ -29,13 +29,13 @@ class BookPersistenceFactory extends PersistenceFactory
 
     public function getSelectionFactory()
     {
-        return new BookUpdateFactory();
+        return new BookSelectionFactory();
     }
 
     public function getUpdateFactory()
     {
-        return new BookSelectionFactory();
+        return new BookUpdateFactory();
     }
 
-    
+
 }

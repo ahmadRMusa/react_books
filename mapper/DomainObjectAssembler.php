@@ -33,11 +33,13 @@ class DomainObjectAssembler
      */
     function find(IdentityObject $identityObject)
     {
-        //$selection_factory = $this->factory->getSelectionFactory();
-        //list($selection, $value) = $selection_factory->newSelection($identityObject);
-        //$stmt = $this->getStatement($selection);
+        $selection_factory = $this->factory->getSelectionFactory();
+        list($selection, $value) = $selection_factory->newSelection($identityObject);
+        echo $selection;
+        echo $value[0];
+        // $stmt = $this->getStatement($selection);
         // get raw data
-        echo "success!";
+
 
     }
 
@@ -65,6 +67,7 @@ class DomainObjectAssembler
     private function getStatement($str)
     {
         // prepare the statement here
+
     }
 
 }

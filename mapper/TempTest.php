@@ -20,7 +20,7 @@ class TempTest
         $collection = $finder->find($idobj);
 
         // output result
-        print_r($collection);
+        // print_r($collection);
     }
 
 }

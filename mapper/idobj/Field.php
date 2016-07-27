@@ -27,6 +27,7 @@ class Field
     // (> 40, for example) and add to the $comps property
     public function addTest($operator, $value)
     {
+        $this->operator = $operator;
         $this->comps[] = array('name' => $this->name, 'operator' => $operator, 'value' => $value);
     }
 
