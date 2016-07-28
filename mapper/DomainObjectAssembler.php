@@ -64,6 +64,7 @@ class DomainObjectAssembler
      */
     function findOne(IdentityObject $identityObject)
     {
+        // TODO: implementation and test
         $collection = $this->find($identityObject);
 
     }
@@ -87,7 +88,6 @@ class DomainObjectAssembler
 
     /**
      * @param $statement
-     * @param $values
      * @return mixed
      */
     private function getStatement($statement)

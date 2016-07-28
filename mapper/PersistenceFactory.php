@@ -11,35 +11,65 @@ namespace mapper {
 
     abstract class PersistenceFactory
     {
+        /**
+         * @param array $array
+         * @return mixed
+         *
+         * transform from raw data to domain object
+         */
         abstract public function getCollection(array $array);
 
+        /**
+         * @return mixed
+         *
+         * generating domain object
+         */
         abstract public function getDomainObjectFactory();
 
-        abstract public function getSelectionFactory();
-
-        abstract public function getUpdateFactory();
-
+        /**
+         * @return mixed
+         *
+         * Identity Object for generating query criteria
+         */
         abstract public function getIdentityObject();
 
         /**
-         * @param $domain_object
+         * @return mixed
+         *
+         * For selection
+         */
+        abstract public function getSelectionFactory();
+
+        /**
+         * @return mixed
+         *
+         * For updating
+         */
+        abstract public function getUpdateFactory();
+
+        /**
+         * @param $domain_object_name
          * @return DomainObjectAssembler with specific type of factory initiated
          *
+         * a domain object assembler that can performs CURD
+         *
          */
-        public static function getFinder($domain_object)
+        public static function getFinder($domain_object_name)
         {
-            $finder = new DomainObjectAssembler(self::getFactory($domain_object));
+            $finder = new DomainObjectAssembler(self::getFactory($domain_object_name));
             return $finder;
         }
 
         /**
-         * @param $domain_object the name of the domain class
+         * @param $domain_object_name the name of the domain class
          * @return mixed an persistence factory of a specific type
          *
+         * get an specific child implementation
          */
-        public static function getFactory($domain_object)
+        public static function getFactory($domain_object_name)
         {
-            $class_name = $domain_object . "PersistenceFactory";
+            $class_name = $domain_object_name . "PersistenceFactory";
+            // persistence factory are always under this namespace
             $namespace = "mapper\\";
             $class = $namespace . $class_name;
             // TODO: check if this class exists

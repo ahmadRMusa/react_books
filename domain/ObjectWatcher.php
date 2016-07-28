@@ -16,7 +16,14 @@ namespace domain;
  * and thereby help to ensure that nothing that should be one object becomes two.
  *
  * In fact, the Identity Map itself does not prevent this from happening in any active way.
- * Its role is to manage information about objects
+ * Its role is to manage information about objects.
+ *
+ * DIRTY: Objects are described as “dirty” when they have been changed since extraction from the database.
+ * A dirty object is stored in the $dirty array property (via the addDirty() method)
+ * until the time comes to update the database.
+ *
+ * NEW: a newly created object should be added to the $new array (via the addNew() method).
+ * Objects in this array are scheduled for insertion into the database.
  */
 class ObjectWatcher
 {
@@ -93,16 +100,20 @@ class ObjectWatcher
         $inst = self::instance();
         unset($inst->delete[$inst->globalKey($object)]);
         unset($inst->dirty[$inst->globalKey($object)]);
+        // remove the object from new array since it no longer need to be or already have been inserted
         $inst->new = array_filter($inst->new,
             function ($a) use ($object) {
                 return !($a === $object);
             });
     }
 
+    /**
+     * Transaction operations
+     */
     public function performOperations()
     {
         foreach ($this->dirty as $key => $obj) {
-            $obj->finder()->update($obj);
+            $obj->finder()->insert($obj);
         }
 
         foreach ($this->new as $key => $obj) {
