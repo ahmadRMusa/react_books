@@ -20,6 +20,17 @@ class BookObjectFactory extends DomainObjectFactory
      *
      * Since this is a specific implementation for the Book Object factory,
      * we can customize all the fields we need for Book class
+     *
+     * find obj in identity map first then initialize a new one
+     *
+     * Both find() and createObject() first check for an existing object by passing the table ID to getFromMap().
+     * If an object is found, it is returned to the client and method execution ends.
+     *
+     * If, however, there is no version of this object in existence yet,
+     * object instantiation goes ahead.
+     *
+     * In createObject(), the new object is passed to addToMap() to prevent any clashes in the future.
+     *
      */
 
     public function createObject(array $raw_data)
@@ -38,21 +49,9 @@ class BookObjectFactory extends DomainObjectFactory
         return $obj;
     }
 
-    protected function doInsert(DomainObject $obj)
-    {
-        // TODO: Implement doInsert() method.
-    }
-
-    protected function update(DomainObject $obj)
-    {
-        // TODO: Implement update() method.
-    }
-
-    protected function selectStmt()
-    {
-        // TODO: Implement selectStmt() method.
-    }
-
+    /**
+     * @return mixed the class type of the domain object
+     */
     protected function targetClass()
     {
         return Book::class;
