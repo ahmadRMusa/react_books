@@ -11,7 +11,7 @@ namespace mapper;
 use domain\Book;
 use domain\ObjectWatcher;
 
-class TestTransaction
+class TestAddTransaction
 {
 
     public function runTest()

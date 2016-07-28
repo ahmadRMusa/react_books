@@ -64,8 +64,8 @@ class DomainObjectAssembler
      */
     function findOne(IdentityObject $identityObject)
     {
-        // TODO: implementation and test
         $collection = $this->find($identityObject);
+        return $collection->next();
 
     }
 

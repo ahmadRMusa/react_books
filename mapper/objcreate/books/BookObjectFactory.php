@@ -32,8 +32,6 @@ class BookObjectFactory extends DomainObjectFactory
             return $old;
         }
 
-        echo "********Cache*********";
-
         // create an object
         $obj = $this->doCreateObject($raw_data);
         $this->addToMap($obj);
