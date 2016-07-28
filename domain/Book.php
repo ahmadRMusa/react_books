@@ -13,7 +13,7 @@ class Book extends DomainObject
 {
 
     // TODO: we should take care of the Unit of Work Pattern when using setters and getters here
-    private $isbn;
+    // private $isbn; // no need for this field, it is held by id field in DomainObject
     private $author;
     private $title;
     private $catid;

@@ -45,7 +45,7 @@ class ObjectWatcher
 
     public function globalKey(DomainObject $object)
     {
-        $key = get_key(get_class($object), $object->getId());
+        $key = $this->get_key(get_class($object), $object->getId());
         return $key;
     }
 
@@ -58,7 +58,7 @@ class ObjectWatcher
     public static function exists($classname, $id)
     {
         $inst = self::instance();
-        $key = get_key($classname, $id);
+        $key = self::get_key($classname, $id);
         if (isset($inst->all[$key])) {
             return $inst->all[$key];
         }

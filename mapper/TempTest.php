@@ -18,9 +18,17 @@ class TempTest
         $idobj = $factory->getIdentityObject()->field('author')->eq('jie');
         $finder = PersistenceFactory::getFinder("Book");
         $collection = $finder->find($idobj);
+        $collection2 = $finder->find($idobj);
         // output result
         while ($collection->current()) {
             print_r($collection->next());
+            echo "|||||||||||||||";
+        }
+
+        echo "<br/>";
+
+        while ($collection2->current()) {
+            print_r($collection2->next());
             echo "|||||||||||||||";
         }
     }

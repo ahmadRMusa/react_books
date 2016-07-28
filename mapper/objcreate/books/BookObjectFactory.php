@@ -25,15 +25,17 @@ class BookObjectFactory extends DomainObjectFactory
     public function createObject(array $raw_data)
     {
         // the raw data uses isbn as the key, not id
-        //$old = $this->getFromMap($raw_data['isbn']);
+        $old = $this->getFromMap($raw_data['isbn']);
 
-        /*if (!is_null($old)) {
+        if (!is_null($old)) {
             return $old;
-        }*/
+        }
+
+        echo "********Cache*********";
 
         // create an object
         $obj = $this->doCreateObject($raw_data);
-        //$this->addToMap($obj);
+        $this->addToMap($obj);
         return $obj;
     }
 
