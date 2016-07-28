@@ -36,7 +36,7 @@ $autoload->register();
 
 \ApplicationRegistry::instance();
 
-$test = new mapper\TestUpdate();
+$test = new mapper\TestInsert();
 $test->runTest();
 
 

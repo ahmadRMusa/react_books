@@ -19,7 +19,7 @@ class TestUpdate
         $finder = PersistenceFactory::getFinder("Book");
         $collection = $finder->find($idobj);
         $object = $collection->current();
-        $object->setTitle('localhost php');
+        $object->setTitle('program php');
         $finder->insert($object);
         $collection2 = $finder->find($idobj);
         while ($collection2->current()) {
