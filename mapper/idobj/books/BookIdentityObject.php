@@ -14,7 +14,8 @@ class BookIdentityObject extends IdentityObject
     function __construct($field = null)
     {
         // TODO: How to lists all the attributes of an object here without hard-code?
-        parent::__construct($field, array('isbn', 'title', 'author', 'price', 'catid', 'description'));
+        // TODO: Need a mechanism to mapping database column to domain object.
+        parent::__construct($field, array('book_id', 'isbn', 'title', 'author', 'price', 'catid', 'description'));
     }
 
 }

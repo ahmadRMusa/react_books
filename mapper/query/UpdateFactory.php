@@ -17,8 +17,8 @@ abstract class UpdateFactory
 
     /**
      * @param $table
-     * @param array $fields key-value pair corresponding to field name and the its value
-     * @param array|null $conditions usually this is just an id
+     * @param array $fields key-value pair corresponding to field name and the its value that will be updated
+     * @param array|null $conditions the conditions will be used when update an object
      * @return array an array contains two elements, one is the sql and the other is the data need to be inserted or updated
      */
     protected function buildStatement($table, array $fields, array $conditions = null)
@@ -30,7 +30,7 @@ abstract class UpdateFactory
             $query .= implode(" = ?, ", array_keys($fields)) . " = ?";
             $terms = array_values($fields);
             $cond = array();
-            $query .= "WHERE ";
+            $query .= " WHERE ";
             foreach ($conditions as $key => $val) {
                 $cond[] = "{$key} = ?";
                 $terms[] = $val;

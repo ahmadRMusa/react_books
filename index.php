@@ -36,13 +36,7 @@ $autoload->register();
 
 \ApplicationRegistry::instance();
 
-$cat_arr = get_categories();
-
-display_categories($cat_arr);
-
-do_html_url('login.php', 'Go to Login Page');
-
-$test = new mapper\TempTest();
+$test = new mapper\TestUpdate();
 $test->runTest();
 
 

@@ -12,7 +12,10 @@ namespace domain;
 abstract class DomainObject
 {
 
-    private $id;
+    private $id = null;
+
+    // db-obj field mapping
+    protected $mapping = null;
 
     /**
      * DomainObject constructor.
@@ -23,27 +26,51 @@ abstract class DomainObject
      * The constructor method marks the current object as new (by calling markNew())
      * if no $id property has been passed to it
      */
-    public function __construct($id = null, $shouldPersist = true)
+    public function __construct($shouldPersist = true, $id = null)
     {
         if (is_null($id) && $shouldPersist) {
             $this->markNew();
         } else {
-
-            // TODO: should we set id here?
             $this->id = $id;
         }
     }
 
-    public function setId($id)
+    /**
+     * @param $obj_field_name field name of the domain object
+     * @return mixed corresponding column name in database
+     *
+     */
+    abstract public function getColumnName($obj_field_name);
+
+    /**
+     * @return mixed
+     *
+     * initialize mapping
+     */
+    abstract protected function initMapping();
+
+    public function getMappingArray()
     {
-        $this->id = $id;
+        return $this->mapping;
     }
 
+    /**
+     * @return null
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * @param null $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    // TODO: what should this be?
     public static function getCollection($type)
     {
 

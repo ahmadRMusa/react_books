@@ -24,8 +24,9 @@ class BookObjectFactory extends DomainObjectFactory
 
     public function createObject(array $raw_data)
     {
-        // the raw data uses isbn as the key, not id
-        $old = $this->getFromMap($raw_data['isbn']);
+        // TODO: After mapping we are able to use field name but not index
+        // $old = $this->getFromMap($raw_data['id']);
+        $old = $this->getFromMap($raw_data[0]);
 
         if (!is_null($old)) {
             return $old;
@@ -61,6 +62,8 @@ class BookObjectFactory extends DomainObjectFactory
 
     private function doCreateObject($raw_data)
     {
+        // TODO: mapping
+        $id = $raw_data[0];
         $isbn = $raw_data['isbn'];
         $author = $raw_data['author'];
         $title = $raw_data['title'];
@@ -69,7 +72,7 @@ class BookObjectFactory extends DomainObjectFactory
         $description = $raw_data['description'];
         $shouldPersist = false;
 
-        return new Book($isbn, $author, $title, $catid, $price, $description, $shouldPersist);
+        return new Book($id, $isbn, $author, $title, $catid, $price, $description, $shouldPersist);
     }
 
 }

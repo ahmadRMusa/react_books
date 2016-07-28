@@ -9,7 +9,7 @@
 namespace mapper;
 
 
-class TempTest
+class TestSelect
 {
 
     public function runTest()
@@ -22,14 +22,15 @@ class TempTest
         // output result
         while ($collection->current()) {
             print_r($collection->next());
-            echo "|||||||||||||||";
+            echo "|||||||||||||||<br/>";
         }
 
+        echo "<br/>";
         echo "<br/>";
 
         while ($collection2->current()) {
             print_r($collection2->next());
-            echo "|||||||||||||||";
+            echo "|||||||||||||||<br/>";
         }
     }
 

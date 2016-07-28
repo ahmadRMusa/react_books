@@ -11,13 +11,14 @@
  */
 namespace mapper;
 
-class IdentityObject
+abstract class IdentityObject
 {
     // an field instance, we will add condition to it later
     protected $current_field = null;
     // associative array, key - field name,
     // value - an Field instance with which we can add comparison condition later
     protected $fields = array();
+
     // check valid fields
     private $enforce = array();
 

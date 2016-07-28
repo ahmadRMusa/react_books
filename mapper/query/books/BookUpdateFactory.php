@@ -14,32 +14,29 @@ use \domain\DomainObject;
 class BookUpdateFactory extends UpdateFactory
 {
 
-    function newUpdate(DomainObject $book)
+    public function newUpdate(DomainObject $book)
     {
-        $this->doUpdate($book);
+        return $this->doUpdate($book);
     }
 
     private function doUpdate(Book $book)
     {
-        $isbn = $book->getIsbn();
+        $id = $book->getId();
         $cond = null;
         // TODO: we need to check if isbn has already exists then get the $cond
-        if (usedIsbn($isbn)) {
-            $cond['isbn'] = $isbn;
+        if (!is_null($id)) {
+            $cond[$book->getColumnName('id')] = $id;
         }
 
-        $values['title'] = $book->getTitle();
-        $values['author'] = $book->getAuthor();
-        $values['price'] = $book->getPrice();
-        // More fields here
 
-        return $this->buildStatement("Book", $values, $cond);
+        $values[$book->getColumnName('isbn')] = $book->getIsbn();
+        $values[$book->getColumnName('title')] = $book->getTitle();
+        $values[$book->getColumnName('author')] = $book->getAuthor();
+        $values[$book->getColumnName('price')] = $book->getPrice();
+        $values[$book->getColumnName('catid')] = $book->getCatid();
+        $values[$book->getColumnName('description')] = $book->getDescription();
 
-    }
-
-    // TODO: where should I put the check code?
-    private function usedIsbn($isbn)
-    {
+        return $this->buildStatement("books", $values, $cond);
 
     }
 

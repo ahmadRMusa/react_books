@@ -52,7 +52,7 @@ class DomainObjectAssembler
     {
         $selection_factory = $this->factory->getSelectionFactory();
         list($selection, $value) = $selection_factory->newSelection($identityObject);
-        $stmt = $this->getStatement($selection, $value);
+        $stmt = $this->getStatement($selection);
         $stmt->execute($value);
         $raw = $stmt->fetchAll();
         $collection = $this->factory->getCollection($raw);
@@ -68,11 +68,20 @@ class DomainObjectAssembler
 
     }
 
+    /**
+     * @param DomainObject $domainObject a new object that will be inserted or updated
+     */
     function insert(DomainObject $domainObject)
     {
         $update_factory = $this->factory->getUpdateFactory();
-        list($update_query, $value) = $update_factory->newUpdate($domainObject);
+        list($update_query, $values) = $update_factory->newUpdate($domainObject);
         $stmt = $this->getStatement($update_query);
+        // TODO: check result here
+        $stmt->execute($values);
+        if (is_null($domainObject->getId())) {
+            $domainObject->setId(self::$db_connection->lastInsertId());
+        }
+        $domainObject->markClean();
 
     }
 
@@ -81,7 +90,7 @@ class DomainObjectAssembler
      * @param $values
      * @return mixed
      */
-    private function getStatement($statement, $values)
+    private function getStatement($statement)
     {
         // prepare the statement here
         if (!isset($this->statements[$statement])) {
@@ -102,19 +111,6 @@ class DomainObjectAssembler
 
         // TODO: Refactor DB info
         self::$db_connection = new \PDO('mysql:host=localhost;dbname=react_book', "root", "susie19910401");
-
-    }
-
-    private function getTypeString($values)
-    {
-        // TODO: check valid and blob?
-        $types = array('integer' => 'i', "double" => "d", "string" => "s");
-        $type_str = "";
-        foreach ($values as $value) {
-            $type_str = $type_str . $types[gettype($value)];
-        }
-
-        return $type_str;
 
     }
 
