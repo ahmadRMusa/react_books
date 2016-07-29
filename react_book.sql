@@ -1,4 +1,4 @@
-drop database if exists react_book;
+#drop database if exists react_book;
 
 create database react_book;
 

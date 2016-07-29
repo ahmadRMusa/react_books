@@ -10,7 +10,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require_once 'util_lib.php';
 require_once 'base/NamespaceRegistry.php';
-require_once 'vendor/autoload.php';
+# require_once 'vendor/autoload.php';
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
@@ -32,7 +32,8 @@ $autoload->register();
 
 \ApplicationRegistry::instance();
 
-$test = new mapper\TestAddTransaction();
+$test = new mapper\TestSelect();
 $test->runTest();
+
 
 

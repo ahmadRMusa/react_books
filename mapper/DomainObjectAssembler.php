@@ -125,7 +125,7 @@ class DomainObjectAssembler
         }
 
         // TODO: Refactor DB info
-        self::$db_connection = new \PDO('mysql:host=localhost;dbname=react_book', "root", "susie19910401");
+        self::$db_connection = new \PDO('mysql:host=127.0.0.1;dbname=react_book', "root", "susie19910401");
 
     }
 
