@@ -36,16 +36,23 @@ class BookObjectFactory extends DomainObjectFactory
     public function createObject(array $raw_data)
     {
         // TODO: After mapping we are able to use field name but not index
+        $obj_id = $raw_data[0];
         // $old = $this->getFromMap($raw_data['id']);
-        $old = $this->getFromMap($raw_data[0]);
+        $old = $this->getFromMap($obj_id);
 
         if (!is_null($old)) {
+
+            echo "Cache: BookObjectFactory:createObject() <br/>";
+
             return $old;
         }
 
         // create an object
         $obj = $this->doCreateObject($raw_data);
+        // after we initialize an object we add it to identity map
         $this->addToMap($obj);
+
+        // Note: Objects are passed by reference
         return $obj;
     }
 

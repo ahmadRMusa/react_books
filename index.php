@@ -17,7 +17,6 @@ require_once 'vendor/autoload.php';
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
 // TODO: Global?
-// $autoload->addNamespace('\\', '');
 $autoload->addNamespace('\\', 'base/');
 
 $autoload->addNamespace('mapper', 'mapper/');
@@ -36,7 +35,7 @@ $autoload->register();
 
 \ApplicationRegistry::instance();
 
-$test = new mapper\TestSelect();
+$test = new mapper\TestIdentityMap();
 $test->runTest();
 
 

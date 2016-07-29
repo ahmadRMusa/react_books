@@ -10,6 +10,13 @@ namespace mapper;
 
 use domain\DomainObject;
 
+/**
+ * Class UpdateFactory
+ * @package mapper
+ *
+ * This class prepare sql query and its corresponding data.
+ *
+ */
 abstract class UpdateFactory
 {
 
@@ -20,6 +27,7 @@ abstract class UpdateFactory
      * @param array $fields key-value pair corresponding to field name and the its value that will be updated
      * @param array|null $conditions the conditions will be used when update an object
      * @return array an array contains two elements, one is the sql and the other is the data need to be inserted or updated
+     *
      */
     protected function buildStatement($table, array $fields, array $conditions = null)
     {

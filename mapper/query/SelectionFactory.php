@@ -8,7 +8,12 @@
 
 namespace mapper;
 
-
+/**
+ * Class SelectionFactory
+ * @package mapper
+ *
+ * This class prepare sql query and its corresponding data.
+ */
 abstract class SelectionFactory
 {
     abstract function newSelection(IdentityObject $identityObject);

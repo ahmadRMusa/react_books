@@ -74,10 +74,12 @@ class DomainObjectAssembler
      */
     function insert(DomainObject $domainObject)
     {
+        // prepare queries
         $update_factory = $this->factory->getUpdateFactory();
         list($update_query, $values) = $update_factory->newUpdate($domainObject);
         $stmt = $this->getStatement($update_query);
-        // TODO: check result here
+        // TODO: check db query successful?
+        // get the result here
         $stmt->execute($values);
         if (is_null($domainObject->getId())) {
             $domainObject->setId(self::$db_connection->lastInsertId());

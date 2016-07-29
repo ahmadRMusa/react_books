@@ -59,6 +59,9 @@ abstract class Collection implements \Iterator
      * @throws \Exception
      *
      * implement method from domain model interface
+     *
+     * If no arguments were passed to the constructor, the class starts out empty,
+     * though note that there is the add() method for adding to the collection.
      */
     function add(DomainObject $object)
     {
@@ -70,6 +73,7 @@ abstract class Collection implements \Iterator
 
         $this->notifyAccess();
 
+        // TODO: Object watcher?
         // add a new object to collection
         $this->objects[$this->total] = $object;
         $this->total++;
@@ -91,11 +95,16 @@ abstract class Collection implements \Iterator
             return null;
         }
 
+        // Note: Object is passed by reference. If the object changed later,
+        // the corresponding value of the array will also change
         if (isset($this->objects[$num])) {
+
+            echo "Cache: Collection::getRow() <br/>";
+
             return $this->objects[$num];
         }
 
-        //
+        // 
         if (isset($this->raw[$num])) {
             $this->objects[$num] = $this->dof->createObject($this->raw[$num]);
             return $this->objects[$num];

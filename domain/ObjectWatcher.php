@@ -12,6 +12,19 @@ namespace domain;
  * Class ObjectWatcher
  * @package domain
  *
+ * In the design of database management systems, the identity map pattern is a database access design pattern
+ * used to improve performance by providing a context-specific, in-memory cache to prevent duplicate retrieval
+ * of the same object data from the database.
+ *
+ * If the requested data has already been loaded from the database, the identity map returns the same instance
+ * of the already instantiated object, but if it has not been loaded yet, it loads it and stores the
+ * new object in the map. In this way, it follows a similar principle to lazy loading.
+ *
+ * From wiki.
+ *
+ * So I think when we initialize a new domain object and then insert it into a db we should NOT add it into
+ * identity map, only the data that loads from database we should do so.
+ *
  * An identity map is simply an object whose task it is to keep track of all the objects in a system,
  * and thereby help to ensure that nothing that should be one object becomes two.
  *
@@ -24,6 +37,7 @@ namespace domain;
  *
  * NEW: a newly created object should be added to the $new array (via the addNew() method).
  * Objects in this array are scheduled for insertion into the database.
+ *
  */
 class ObjectWatcher
 {
@@ -62,10 +76,18 @@ class ObjectWatcher
         $inst->all[$inst->globalKey($object)] = $object;
     }
 
+    /**
+     * @param $classname
+     * @param $id
+     * @return mixed|null
+     *
+     * check if an object exists in identity map, if not return null
+     */
     public static function exists($classname, $id)
     {
         $inst = self::instance();
         $key = self::get_key($classname, $id);
+
         if (isset($inst->all[$key])) {
             return $inst->all[$key];
         }
@@ -123,8 +145,6 @@ class ObjectWatcher
         $this->dirty = array();
         $this->new = array();
     }
-
-    // Helper functions
 
     /**
      * @param $classname
