@@ -11,12 +11,9 @@ set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 require_once 'util_lib.php';
 require_once 'base/NamespaceRegistry.php';
 require_once 'vendor/autoload.php';
-// require_once 'base/ApplicationRegistry.php';
-// require_once 'base/Registry.php';
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
-// TODO: Global?
 $autoload->addNamespace('\\', 'base/');
 
 $autoload->addNamespace('mapper', 'mapper/');
@@ -35,7 +32,7 @@ $autoload->register();
 
 \ApplicationRegistry::instance();
 
-$test = new mapper\TestIdentityMap();
+$test = new mapper\TestAddTransaction();
 $test->runTest();
 
 

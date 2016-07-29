@@ -9,6 +9,7 @@
 namespace mapper;
 
 use domain\DomainObject;
+use domain\ObjectWatcher;
 
 /**
  * Class DomainObjectAssembler
@@ -86,6 +87,18 @@ class DomainObjectAssembler
         }
         $domainObject->markClean();
 
+    }
+
+    /**
+     *
+     * Perform all the events as a transaction.
+     *
+     */
+    static function commitTransaction()
+    {
+        self::getConnectionObj()->beginTransaction();
+        ObjectWatcher::instance()->performOperations();
+        self::getConnectionObj()->commit();
     }
 
     /**

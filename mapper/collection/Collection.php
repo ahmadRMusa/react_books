@@ -84,7 +84,27 @@ abstract class Collection implements \Iterator
      * @param $num
      * @return mixed|null
      *
+     * Note: Collection and Identity Map are different thing. You can have multiple Collections even with
+     * the same content, but you can only have one Identity Map.
      *
+     * All the objects are references to objects in the Identity Map, since objects are passed by reference.
+     *
+     * Change the object in one collection will result the change of the one in another.
+     *
+     * So here each collection has an objects array that stores all the initialized object and once the object
+     * is initialized, it will be added to Identity Map. So there are two level cache here, one is from collection
+     * and the other is from Identity Map. Since objects are all passed by reference, these two level of caches
+     * keep synchronized.
+     *
+     * In the same collection, same object will get directly from cache without even trying to call createObject(),
+     * though createObject() also has cache. And same object will not be initialized twice thanks to the Identitiy map.
+     *
+     * So suppose there are two collections with same two objects. The first time we add a new object to the collection,
+     * we need to initialize the object from raw data, which will be saved to Identity Map. So the time we add objects to
+     * another collection, we do not need to initialize the object from raw data again.
+     *
+     * Meanwhile, if we get from the collection the first time, we need to add the new object to COLLECTION'S CACHE.
+     * The second time we get data from the same collection, the object is already prepared and no need to initialize.
      */
     private function getRow($num)
     {
