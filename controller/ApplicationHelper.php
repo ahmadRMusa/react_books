@@ -14,8 +14,35 @@ namespace controller;
  *
  * This class simply reads a configuration file and makes values available to clients.
  *
+ * TODO: Both ApplicationRegistry and ApplicationHelper use hard-coded paths to work with files.
+ * In a real-world deployment, these file paths would probably be configurable and acquired through a registry
+ * or configuration object.
+ *
  */
 class ApplicationHelper
 {
+
+    private static $instance = null;
+    // TODO: path to the configuration file
+    private $config = "";
+
+    private function __construct()
+    {
+    }
+
+    static function instance()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    // responsible for loading configuration data
+    function init()
+    {
+
+    }
 
 }

@@ -20,7 +20,7 @@ namespace controller;
  */
 class Request
 {
-
+    // set the request data here
     private $properties;
     private $feedback = array();
 
@@ -28,6 +28,8 @@ class Request
     {
     }
 
+    // TODO: Check if query string has arrived
+    // http://stackoverflow.com/questions/9270030/serverargv-with-http-get-and-cli-issue
     function init()
     {
         if (isset($_SERVER['REQUEST_METHOD'])) {
@@ -37,11 +39,11 @@ class Request
 
         /**
          *
-         * TODO: get more info here
-         *
          * Array of arguments passed to the script. When the script is run on the command line,
          * this gives C-style access to the command line parameters.
+         *
          * When called via the GET method, this will contain the query string.
+         * TODO: $_SERVER['QUERY_STRING'] ?
          */
         foreach ($_SERVER['argv'] as $arg) {
 

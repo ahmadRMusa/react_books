@@ -53,6 +53,9 @@
  *      <?php
  *      new \Foo\Bar\Qux\QuuxTest;
  */
+
+namespace base;
+
 class NamespaceRegistry
 {
 

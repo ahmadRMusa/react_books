@@ -6,6 +6,8 @@
  * Time: 12:13 AM
  */
 
+namespace base;
+
 use \controller\Request;
 
 /**

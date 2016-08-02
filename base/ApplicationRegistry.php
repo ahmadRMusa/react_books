@@ -5,8 +5,8 @@
  * Date: 7/23/16
  * Time: 12:23 AM
  */
-//require_once 'Registry.php';
 
+namespace base;
 /**
  * Class ApplicationRegistry
  * @package base
@@ -61,6 +61,5 @@ class ApplicationRegistry extends \Registry
         }
         return $inst->request;
     }
-
 
 }
