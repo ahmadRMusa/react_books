@@ -8,6 +8,8 @@
  *
  * An identity object (also called a Data Transfer Object by Alur et al.)
  * encapsulates query criteria, thereby decoupling the system from database syntax.
+ *
+ * This class makes an Identity Object
  */
 namespace mapper;
 

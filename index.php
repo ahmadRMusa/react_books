@@ -10,7 +10,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 require_once 'util_lib.php';
 require_once 'base/NamespaceRegistry.php';
-# require_once 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
@@ -29,6 +29,8 @@ $autoload->addNamespace('mapper', 'mapper/query/books');
 $autoload->addNamespace('domain', 'domain/');
 
 $autoload->register();
+
+// phpinfo();
 
 \ApplicationRegistry::instance();
 
