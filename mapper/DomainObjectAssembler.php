@@ -10,6 +10,7 @@ namespace mapper;
 
 use domain\DomainObject;
 use domain\ObjectWatcher;
+use base\ApplicationRegistry;
 
 /**
  * Class DomainObjectAssembler
@@ -118,7 +119,7 @@ class DomainObjectAssembler
 
     private function connect_db()
     {
-        $db_info = \ApplicationRegistry::getDBInfo();
+        $db_info = ApplicationRegistry::getDBInfo();
 
         if (is_null($db_info)) {
             throw new \Exception("Database info required");
@@ -126,6 +127,7 @@ class DomainObjectAssembler
 
         // TODO: Refactor DB info
         self::$db_connection = new \PDO('mysql:host=127.0.0.1;dbname=react_book', "root", "susie19910401");
+        // self::$db_connection = new \PDO('mysql://root:susie19910401@localhost:3306/react_book');
 
     }
 

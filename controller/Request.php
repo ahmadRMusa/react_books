@@ -7,6 +7,7 @@
  */
 
 namespace controller;
+use command\Command;
 
 /**
  * Class Request
@@ -23,6 +24,7 @@ class Request
     // set the request data here
     private $properties;
     private $feedback = array();
+    private $last_cmd = null;
 
     function __construct()
     {
@@ -83,5 +85,14 @@ class Request
         return implode($separator, $this->feedback);
     }
 
+    function setCommand(Command $cmd)
+    {
+        $this->last_cmd = $cmd;
+    }
+
+    function getLastCommand()
+    {
+        return $this->last_cmd;
+    }
 
 }

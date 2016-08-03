@@ -26,8 +26,9 @@ class ApplicationRegistry extends Registry
 {
 
     private static $instance = null;
-    private $values = array();
     private static $controller_map = null;
+    private $request = null;
+    private $appController = null;
 
     private function __construct()
     {
@@ -59,6 +60,7 @@ class ApplicationRegistry extends Registry
         // TODO: Implement set() method.
     }
 
+    // TODO: Should we get request from here? Should not to be from RequestRegistry?
     static function getRequest()
     {
         $inst = self::instance();
@@ -88,12 +90,12 @@ class ApplicationRegistry extends Registry
         return self::$controller_map;
     }
 
-    static function getAppController(ControllerMap $ctrl_map)
+    static function getAppController()
     {
         $inst = self::instance();
         if (is_null($inst->appController)) {
             // TODO: where shall I init control map?
-            $inst->appController = new AppController($ctrl_map);
+            $inst->appController = new AppController();
         }
         return $inst->appController;
     }

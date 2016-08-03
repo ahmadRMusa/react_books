@@ -45,12 +45,8 @@ require_once 'base/ApplicationRegistry.php';
 
 // phpinfo();
 
-$options = \simplexml_load_file("shared/ctrl_options.xml");
+\controller\Controller::run();
 
-$test = \controller\ApplicationHelper::instance();
-$test->init();
-
-ApplicationRegistry::instance();
-
-
+// $selection = new \mapper\TestSelect();
+// $selection->runTest();
 
