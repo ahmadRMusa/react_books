@@ -27,6 +27,7 @@ class ApplicationRegistry extends Registry
 
     private static $instance = null;
     private $values = array();
+    private static $controller_map = null;
 
     private function __construct()
     {
@@ -65,6 +66,26 @@ class ApplicationRegistry extends Registry
             $inst->request = new Request();
         }
         return $inst->request;
+    }
+
+    static function setControllerMap(ControllerMap $map)
+    {
+        // we don't want to set up it again!
+        if (!is_null(self::$controller_map)) {
+            throw new \Exception("Controller Map has already set!");
+        }
+        self::$controller_map = $map;
+    }
+
+    static function getControllerMap()
+    {
+        // check if it is set already
+        if (is_null(self::$controller_map)) {
+            // TODO: ERROR
+            throw new \Exception("Controller Map has not set yet!");
+        }
+
+        return self::$controller_map;
     }
 
     static function getAppController(ControllerMap $ctrl_map)

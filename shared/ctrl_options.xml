@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
-    
+
+    <view>main</view>
+    <view status="CMD_OK">main</view>
+    <view status="CMD_ERROR">error</view>
+
+    <command name="Login">
+        <view>Login</view>
+        <!-- TODO: How to authentication? -->
+    </command>
+
+    <!-- Sample Code -->
+    <command name="QuickAddVenue">
+        <classroot name="AddVenue"/>
+        <view>quickadd</view>
+    </command>
+
+    <command name="AddVenue">
+        <view>addvenue</view>
+        <status value="CMD_OK">
+            <!-- Forward to another Command not a view -->
+            <forward>AddSpace</forward>
+        </status>
+    </command>
+
 </control>

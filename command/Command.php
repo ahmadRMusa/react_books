@@ -19,10 +19,30 @@ abstract class Command
         'CMD_INSUFFICIENT_DATA' => 3
     );
 
+    private $status = 0;
+
     // By declaring the constructor method final, I make it impossible for a child class to override it.
     // No Command class, therefore, will ever require arguments to its constructor.
     final function __construct()
     {
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public static function reformatStatus($status = 'CMD_DEFAULT')
+    {
+        if ($status == null || $status == "") {
+            $status = 'CMD_DEFAULT';
+        }
+
+        if (isset(self::$STATUS_STRINGS[$status])) {
+            return self::$STATUS_STRINGS[$status];
+        }
+
+        throw new \Exception("Unknown status {$status}");
     }
 
     public function execute(Request $request)

@@ -12,10 +12,12 @@ namespace controller;
 class ControllerMap
 {
 
-    private $viewMap = array();
-    private $forwardMap = array();
-    private $classrootMap = array();
-
+    // The $forwardMap and $viewMap arrays are both two-dimensional,
+    // supporting combinations of commands and statuses.
+    private $viewMap = null;
+    private $forwardMap = null;
+    private $classrootMap = null;
+    
     function addClassroot($command, $classroot)
     {
         $this->classrootMap[$command] = $classroot;
@@ -26,6 +28,8 @@ class ControllerMap
         if (isset($this->classrootMap[$command])) {
             return $this->classrootMap[$command];
         }
+
+        // if command is not found in classrootmap, return the command itself.
         return $command;
     }
 

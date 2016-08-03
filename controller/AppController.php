@@ -32,11 +32,24 @@ class AppController
         $this->invoked = array();
     }
 
+    /**
+     * @param Request $req
+     *
+     * get a view from viewMap array in ControllerMap
+     *
+     */
     function getView(Request $req)
     {
-
+        $view = $this->getResource($req, "View");
+        return $view;
     }
 
+    /**
+     * @param Request $req
+     *
+     * get a view from $forwardMap array in ControllerMap
+     *
+     */
     function getCommand(Request $req)
     {
 
@@ -44,12 +57,19 @@ class AppController
 
     function resolveCommand($cmd)
     {
-        
+
     }
 
     private function getForward(Request $req)
     {
+        $forward = $this->getResource($req, "Forward");
 
+        if ($forward) {
+            // TODO: Why set a property here?
+            $req->setProperty('cmd', $forward);
+        }
+
+        return $forward;
 
     }
 

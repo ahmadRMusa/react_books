@@ -8,9 +8,13 @@
 
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
+// TODO: Refactor this shit
 require_once 'util_lib.php';
-require_once 'base/NamespaceRegistry.php';
 require_once 'vendor/autoload.php';
+require_once 'base/NamespaceRegistry.php';
+
+use base\NamespaceRegistry;
+use base\ApplicationRegistry;
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
@@ -28,14 +32,25 @@ $autoload->addNamespace('mapper', 'mapper/query/books');
 
 $autoload->addNamespace('domain', 'domain/');
 
+$autoload->addNamespace('controller', 'controller/');
+
+$autoload->addNamespace('command', 'command/');
+$autoload->addNamespace('command', 'command/cmds/');
+
 $autoload->register();
+
+require_once 'base/Registry.php';
+require_once 'base/ApplicationRegistry.php';
+
 
 // phpinfo();
 
-\ApplicationRegistry::instance();
+$options = \simplexml_load_file("shared/ctrl_options.xml");
 
-$test = new mapper\TestSelect();
-$test->runTest();
+$test = \controller\ApplicationHelper::instance();
+$test->init();
+
+ApplicationRegistry::instance();
 
 
 

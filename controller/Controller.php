@@ -10,6 +10,13 @@ namespace controller;
 
 use base\ApplicationRegistry;
 
+/**
+ * Class Controller
+ * @package controller
+ *
+ * TODO: the start of the app?
+ *
+ */
 class Controller
 {
 
@@ -42,6 +49,7 @@ class Controller
         // TODO: Controller Map
         $app_ctrl = ApplicationRegistry::getAppController();
 
+        // analyze all the forward chain
         while ($cmd = $app_ctrl->getCommand($request)) {
             // TODO: Why execute?
             $cmd->execute($request);
