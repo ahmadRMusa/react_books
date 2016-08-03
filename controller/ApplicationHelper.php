@@ -23,8 +23,8 @@ class ApplicationHelper
 {
 
     private static $instance = null;
-    // TODO: path to the configuration file
-    private $config = "";
+    // TODO: path to the configuration file?
+    private $config = "/shared/ctrl_options.xml";
 
     private function __construct()
     {
@@ -42,6 +42,19 @@ class ApplicationHelper
     // responsible for loading configuration data
     function init()
     {
+
+    }
+
+    private function getOptions()
+    {
+        // TODO: Check file exists
+
+        $options = \simplexml_load_file($this->config);
+
+        $map = new ControllerMap();
+
+        // TODO: set up the map here
+
 
     }
 

@@ -8,7 +8,6 @@
 
 namespace command;
 
-use controller\DefaultCommand;
 use controller\Request;
 
 class CommandResolver

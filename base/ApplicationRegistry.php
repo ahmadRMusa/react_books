@@ -7,6 +7,11 @@
  */
 
 namespace base;
+
+use controller\AppController;
+use controller\ControllerMap;
+use controller\Request;
+
 /**
  * Class ApplicationRegistry
  * @package base
@@ -17,7 +22,7 @@ namespace base;
  * and provides some guarantee that only a single Request instance will be available across the system.
  *
  */
-class ApplicationRegistry extends \Registry
+class ApplicationRegistry extends Registry
 {
 
     private static $instance = null;
@@ -57,9 +62,19 @@ class ApplicationRegistry extends \Registry
     {
         $inst = self::instance();
         if (is_null($inst->request)) {
-            $inst->request = new \controller\Request();
+            $inst->request = new Request();
         }
         return $inst->request;
+    }
+
+    static function getAppController(ControllerMap $ctrl_map)
+    {
+        $inst = self::instance();
+        if (is_null($inst->appController)) {
+            // TODO: where shall I init control map?
+            $inst->appController = new AppController($ctrl_map);
+        }
+        return $inst->appController;
     }
 
 }

@@ -12,7 +12,7 @@ use controller\Request;
 
 class DefaultCommand extends Command
 {
-    function doExecute(Request $request)
+    protected function doExecute(Request $request)
     {
         // TODO: Implement doExecute() method.
 

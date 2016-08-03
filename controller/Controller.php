@@ -9,7 +9,6 @@
 namespace controller;
 
 use base\ApplicationRegistry;
-use command\CommandResolver;
 
 class Controller
 {
@@ -36,9 +35,24 @@ class Controller
     function handleRequest()
     {
         $request = ApplicationRegistry::getRequest();
-        $cmd_r = new CommandResolver();
-        $cmd = $cmd_r->getCommand($request);
-        $cmd->execute($request);
+        // this is for the old front controller
+        // $cmd_r = new CommandResolver();
+        // $cmd = $cmd_r->getCommand($request);
+        // $cmd->execute($request);
+        // TODO: Controller Map
+        $app_ctrl = ApplicationRegistry::getAppController();
+
+        while ($cmd = $app_ctrl->getCommand($request)) {
+            // TODO: Why execute?
+            $cmd->execute($request);
+        }
+
+        $this->invokeView($app_ctrl->getView($request));
+    }
+
+    private function invokeView($target)
+    {
+        include("view/{$target}.php");
     }
 
 }
