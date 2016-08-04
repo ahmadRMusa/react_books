@@ -9,7 +9,6 @@
 set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 // TODO: Refactor this shit
-require_once 'util_lib.php';
 require_once 'vendor/autoload.php';
 require_once 'base/NamespaceRegistry.php';
 
@@ -45,8 +44,10 @@ require_once 'base/ApplicationRegistry.php';
 
 // phpinfo();
 
-Controller::run();
+// Controller::run();
 
 // $selection = new \mapper\TestSelect();
 // $selection->runTest();
+
+echo "index";
 
