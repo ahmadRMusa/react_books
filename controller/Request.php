@@ -7,6 +7,7 @@
  */
 
 namespace controller;
+
 use command\Command;
 
 /**
@@ -28,6 +29,7 @@ class Request
 
     function __construct()
     {
+        $this->init();
     }
 
     // TODO: Check if query string has arrived

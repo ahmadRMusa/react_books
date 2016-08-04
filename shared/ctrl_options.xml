@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
 
-    <view>Main</view>
-    <view status="CMD_OK">Main</view>
+    <view>Index</view>
+    <view status="CMD_OK">Index</view>
     <view status="CMD_ERROR">Error</view>
 
     <command name="Login">

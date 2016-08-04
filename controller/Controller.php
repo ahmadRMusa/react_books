@@ -39,6 +39,11 @@ class Controller
         $this->applicationHelper->init();
     }
 
+    /**
+     *
+     * Based on command, render a view
+     *
+     */
     function handleRequest()
     {
         $request = ApplicationRegistry::getRequest();

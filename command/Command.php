@@ -10,6 +10,14 @@ namespace command;
 
 use controller\Request;
 
+/**
+ * Class Command
+ * @package command
+ *
+ * Commands are a kind of relay station: they should interpret a request, call into the domain
+ * to juggle some objects, and then lodge data for the presentation layer.
+ *
+ */
 abstract class Command
 {
     private static $STATUS_STRINGS = array(

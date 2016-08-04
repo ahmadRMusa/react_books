@@ -14,7 +14,7 @@ require_once 'vendor/autoload.php';
 require_once 'base/NamespaceRegistry.php';
 
 use base\NamespaceRegistry;
-use base\ApplicationRegistry;
+use controller\Controller;
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
@@ -45,7 +45,7 @@ require_once 'base/ApplicationRegistry.php';
 
 // phpinfo();
 
-\controller\Controller::run();
+Controller::run();
 
 // $selection = new \mapper\TestSelect();
 // $selection->runTest();
