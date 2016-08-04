@@ -10,6 +10,13 @@ namespace command;
 
 use controller\Request;
 
+/**
+ * Class DefaultCommand
+ * @package command
+ *
+ * Concrete commands calls business logic and send databack to view layer
+ *
+ */
 class DefaultCommand extends Command
 {
     protected function doExecute(Request $request)

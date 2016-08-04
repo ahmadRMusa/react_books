@@ -10,6 +10,14 @@ namespace command;
 
 use controller\Request;
 
+/**
+ * Class CommandResolver
+ * @package command
+ *
+ * @Deprecated
+ * Replaced by application controller
+ *
+ */
 class CommandResolver
 {
 

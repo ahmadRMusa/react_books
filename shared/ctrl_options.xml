@@ -10,6 +10,19 @@
         <!-- TODO: How to authentication? -->
     </command>
 
+    <command name="GetSpecificBookCommand">
+
+        <status value="CMD_OK">
+            <view>ListBooksView</view>
+        </status>
+
+        <status value="CMD_ERROR">
+            <view>Error</view>
+        </status>
+
+    </command>
+
+
     <!-- Sample Code -->
     <command name="QuickAddVenue">
         <classroot name="AddVenue"/>
