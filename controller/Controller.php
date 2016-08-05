@@ -65,7 +65,7 @@ class Controller
 
     private function invokeView($target)
     {
-        include("view/{$target}.php");
+        include("../view/{$target}View.php");
     }
 
 }

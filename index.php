@@ -6,14 +6,13 @@
  * Time: 4:24 PM
  */
 
-set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
+/*set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
 
 // TODO: Refactor this shit
 require_once 'vendor/autoload.php';
 require_once 'base/NamespaceRegistry.php';
 
 use base\NamespaceRegistry;
-use controller\Controller;
 
 $autoload = NamespaceRegistry::getInstance(__DIR__);
 
@@ -39,7 +38,7 @@ $autoload->addNamespace('command', 'command/cmds/');
 $autoload->register();
 
 require_once 'base/Registry.php';
-require_once 'base/ApplicationRegistry.php';
+require_once 'base/ApplicationRegistry.php';*/
 
 
 // phpinfo();
@@ -49,5 +48,4 @@ require_once 'base/ApplicationRegistry.php';
 // $selection = new \mapper\TestSelect();
 // $selection->runTest();
 
-echo "index";
 

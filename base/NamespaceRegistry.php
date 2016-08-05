@@ -72,7 +72,7 @@ class NamespaceRegistry
     private static $instance = null;
 
     /**
-     * @param null $project_dir
+     * @param null $project_dir we must use the root of the project dir
      * @return NamespaceRegistry|null
      *
      * TODO: We should avoid parameters here

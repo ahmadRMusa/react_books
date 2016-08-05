@@ -27,7 +27,7 @@ class ApplicationHelper
 
     private static $instance = null;
     // TODO: path to the configuration file?
-    private $config = "shared/ctrl_options.xml";
+    private $config = "../shared/ctrl_options.xml";
 
     private function __construct()
     {

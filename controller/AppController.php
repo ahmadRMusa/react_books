@@ -82,7 +82,7 @@ class AppController
             }
         }
 
-        $cmd_obj = $this->resolveCommand('cmd');
+        $cmd_obj = $this->resolveCommand($cmd);
         if (is_null($cmd_obj)) {
             throw new \Exception("Couldn't resolve {$cmd}");
         }
@@ -101,8 +101,9 @@ class AppController
     function resolveCommand($cmd)
     {
         $classroot = $this->controller_map->getClassroot($cmd);
-        $file_path = "command/cmds/{$classroot}.php";
-        $classname = "\\command\\$classroot";
+        // TODO: enable finding command under different directories
+        $file_path = "../command/cmds/{$classroot}Command.php";
+        $classname = "\\command\\$classroot" . "Command";
         if (file_exists($file_path)) {
             require_once($file_path);
             if (class_exists($classname)) {

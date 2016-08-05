@@ -6,8 +6,20 @@
     <view status="CMD_ERROR">Error</view>
 
     <command name="Login">
+
         <view>Login</view>
         <!-- TODO: How to authentication? -->
+
+        <!--
+        <status value="CMD_OK">
+            <forward>GetSpecificBookCommand</forward>
+        </status>
+
+        <status value="CMD_ERROR">
+            <forward>Login</forward>
+        </status>
+        -->
+
     </command>
 
     <command name="GetSpecificBookCommand">
@@ -24,6 +36,7 @@
 
 
     <!-- Sample Code -->
+    <!-- classroot map the name of command to the class of the command, so different name in url but the same command -->
     <command name="QuickAddVenue">
         <classroot name="AddVenue"/>
         <view>quickadd</view>

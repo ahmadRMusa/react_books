@@ -4,4 +4,5 @@ RewriteEngine On
 #RewriteRule index.php controller/relay.php
 
 RewriteCond %{REQUEST_URI} !=/controller/relay.php
+#RewriteRule .* controller/relay.php
 RewriteRule .* controller/relay.php
