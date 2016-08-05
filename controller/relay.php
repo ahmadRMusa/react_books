@@ -50,6 +50,7 @@ use base\ApplicationRegistry;
 // set 'cmd' for Request
 $uri = $_SERVER['REQUEST_URI'];
 $start_pos = strrpos($uri, "/") + 1;
+// get rid of query string
 $query_string_pos = strpos($uri, "?");
 if ($query_string_pos) {
     $cmd = substr($uri, $start_pos, $query_string_pos - 4 - $start_pos);

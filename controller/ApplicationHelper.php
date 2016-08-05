@@ -96,8 +96,15 @@ class ApplicationHelper
                 if ($name == 'view') {
                     $map->addView((string)$class_view, $command_name);
                 } else if ($name == 'status') {
-                    // parsing forward
-                    $map->addForward($command_name, Command::reformatStatus(trim($class_view['value'])), (string)$class_view->forward);
+                    // TODO: Should we have status maps to both view and forward?
+                    if ((string)$class_view->forward != "") {
+                        // parse forward
+                        $map->addForward($command_name, Command::reformatStatus(trim($class_view['value'])), (string)$class_view->forward);
+                    } else {
+                        // parse view
+                        $map->addView((string)$class_view->view, $command_name);
+                    }
+
                 } else if ($name == 'classroot') {
                     $map->addClassroot($command_name, (string)$class_view['name']);
                 } else {

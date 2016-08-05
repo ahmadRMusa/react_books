@@ -55,7 +55,8 @@ abstract class Command
 
     public function execute(Request $request)
     {
-        $this->doExecute($request);
+        // set the status
+        $this->status = $this->doExecute($request);
         // save this command, next time it becomes the previous command
         $request->setCommand($this);
     }

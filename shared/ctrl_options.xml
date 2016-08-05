@@ -22,6 +22,34 @@
 
     </command>
 
+    <command name="Index">
+
+        <view>Index</view>
+        <!-- TODO: How to authentication? -->
+
+        <!--
+        <status value="CMD_OK">
+            <forward>GetSpecificBookCommand</forward>
+        </status>
+        -->
+
+        <!-- Forward to error command and let Error command to show an Error page -->
+        <status value="CMD_ERROR">
+            <forward>Error</forward>
+        </status>
+
+
+    </command>
+
+    <command name="Error">
+
+        <status value="CMD_OK">
+            <view>Error</view>
+        </status>
+
+    </command>
+
+
     <command name="GetSpecificBookCommand">
 
         <status value="CMD_OK">
