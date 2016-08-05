@@ -63,10 +63,15 @@ class AppController
      * @return DefaultCommand|null|void
      * @throws \Exception
      *
+     * Get a concrete Command object by the name of the command which stores in the Request object
+     *
+     * If there is no more forward action, it will return null, which means
+     * it is the time to present
      *
      */
     function getCommand(Request $req)
     {
+        // the first time call this method, $previous will be null
         $previous = $req->getLastCommand();
 
         if (!$previous) {
@@ -77,6 +82,7 @@ class AppController
             }
         } else {
             $cmd = $this->getForward($req);
+            // if there is no more forward, no more action, time to present the result
             if (is_null($cmd)) {
                 return null;
             }
@@ -98,6 +104,12 @@ class AppController
 
     }
 
+    /**
+     * @param $cmd the name of the command
+     * @return null|object a concrete Command Object
+     *
+     *
+     */
     function resolveCommand($cmd)
     {
         $classroot = $this->controller_map->getClassroot($cmd);
@@ -122,7 +134,11 @@ class AppController
      * @param Request $req
      * @param $method
      *
-     * get the name of the command from controller map
+     * based on the command name and status, we can get info from
+     * controller_map to see the next step, either to present(view) or forward
+     *
+     * if it is called by getForward, then return the name of the command for the next action,
+     * if it is called by getView, then return the name of the view to be invoked
      *
      */
     private function getResource(Request $req, $method)
@@ -139,7 +155,7 @@ class AppController
         $acquire = "get{$method}";
         $resource = $this->controller_map->$acquire($cmd_str, $status);
 
-        // TODO: try to get a map, but why in this sequence?
+        // TODO: try to get a view or forward, but why in this sequence?
         if (is_null($resource)) {
             $resource = $this->controller_map->$acquire($cmd_str, 0);
         }

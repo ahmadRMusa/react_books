@@ -53,6 +53,16 @@ abstract class Command
         throw new \Exception("Unknown status {$status}");
     }
 
+    /**
+     * @param Request $request
+     *
+     * This method will try to update the current Command Object in the Request object,
+     * which later we can get by method getLastCommand();
+     *
+     * So now the Request object has the result of the last command (by status)
+     * and saves the last Command Object
+     *
+     */
     public function execute(Request $request)
     {
         // set the status
