@@ -14,12 +14,14 @@ use domain\IBookCollection;
 /**
  * Class BookCollection
  *
+ * BookCollection will use Collection's constructor to get a new Collection
+ *
  */
 class BookCollection extends Collection implements IBookCollection
 {
     function targetClass()
     {
-        // TODO: correct implementation? return a string?
+        // TODO: correct implementation? return a string? The code has ever arrived here?
         return "\\domain\\Book";
     }
 }

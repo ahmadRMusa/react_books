@@ -70,12 +70,27 @@ abstract class DomainObject
         $this->id = $id;
     }
 
+    /**
+     * @param $type
+     * @return mixed
+     *
+     *
+     */
     // TODO: what should this be?
+    // TODO: Now this method is in class PersistenceFactory, what is the relationship here?
+    // TODO: Search for getCollection and figure out what happened to this?
     public static function getCollection($type)
     {
-
+        if (is_null($type)) {
+            return HelperFactory::getCollection(get_called_class());
+        }
+        return HelperFactory::getCollection($type);
     }
 
+    /**
+     * @return mixed
+     *
+     */
     public function collection()
     {
         return self::getCollection(get_class($this));

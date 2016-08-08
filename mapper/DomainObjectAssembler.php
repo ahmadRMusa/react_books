@@ -57,6 +57,7 @@ class DomainObjectAssembler
         $stmt = $this->getStatement($selection);
         $stmt->execute($value);
         $raw = $stmt->fetchAll();
+        // transform the raw data to objects, the getCollection method comes from Persistence
         $collection = $this->factory->getCollection($raw);
         return $collection;
     }

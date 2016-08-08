@@ -28,7 +28,9 @@ abstract class Collection implements \Iterator
      * @param array|null $raw
      * @param \mapper\DomainObjectFactory $dof we now use Domain Object Factory to create a new object
      *
-     * wrap the raw data to a collection object so that we can operate on the raw data
+     * this constructor may have two functionalities
+     * 1. wrap the raw data to a collection object so that we can operate on the raw data
+     * 2. get a new empty collection for domain layer, and domain layer can add objects to it
      */
     function __construct(array $raw = null, DomainObjectFactory $dof)
     {

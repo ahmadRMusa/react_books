@@ -61,10 +61,11 @@ namespace mapper {
         }
 
         /**
-         * @param $domain_object_name the name of the domain class
-         * @return mixed an persistence factory of a specific type
+         * @param $domain_object_name
+         * @return mixed
          *
          * get an specific child implementation
+         *
          */
         public static function getFactory($domain_object_name)
         {
