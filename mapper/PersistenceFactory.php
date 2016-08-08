@@ -48,7 +48,7 @@ namespace mapper {
         abstract public function getUpdateFactory();
 
         /**
-         * @param $domain_object_name
+         * @param $domain_object_name to initialize the factory attribute in a domain object assembler
          * @return DomainObjectAssembler with specific type of factory initiated
          *
          * a domain object assembler that can performs CURD
