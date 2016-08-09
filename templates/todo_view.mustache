@@ -1,0 +1,43 @@
+<div class="todoapp">
+
+    <header class="header">
+        <h1>todos</h1>
+        <!-- todoapp -->
+        <input placeholder="What needs to be done?" type="text" autofocus="true" class="new-todo js-new-todo"
+               value="{{newValue}}">
+    </header>
+
+    <section class="main">
+        <input class="toggle-all js-toggle-all" type="checkbox" {{#allCompleted}}checked{{/allCompleted}}>
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list js-todo-list">
+            {{#todoItems}}
+                <li class="js-todo-item {{#completed}} completed {{/completed}} {{#editing}} editing {{/editing}}">
+                    {{^editing}}
+                        <div class="view">
+                            <input class="toggle js-toggle" type="checkbox" {{#completed}}checked{{/completed}}>
+                            <label class="js-todo-title">{{title}}</label>
+                            <button class="destroy js-destroy"></button>
+                        </div>
+                    {{/editing}}
+                    <!-- When double click and editing the item -->
+                    {{#editing}}
+                        <input class="edit js-todo-edit" value="{{title}}">
+                    {{/editing}}
+                </li>
+
+            {{/todoItems}}
+        </ul>
+    </section>
+
+    {{#hasTodos}}
+        <footer class="footer">
+            <span class="js-todo-count todo-count"><strong>{{todoCount}}</strong> item{{#todoCountPlural}}
+                s{{/todoCountPlural}} left</span>
+            {{#hasCompleted}}
+                <button class="clear-completed js-clear-completed">Clear completed</button>
+            {{/hasCompleted}}
+        </footer>
+    {{/hasTodos}}
+
+</div>
