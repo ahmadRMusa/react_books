@@ -1,7 +1,10 @@
 /**
  * Created by jlou on 8/8/16.
  */
-var BaseView = tungsten.View, BaseModel = tungsten.Model, BaseCollection = tungsten.Collection;
+
+var BaseView = tungsten.View,
+    BaseModel = tungsten.Model,
+    BaseCollection = tungsten.Collection;
 var ENTER_KEY = 13;
 var ESC_KEY = 27;
 
@@ -68,6 +71,7 @@ var NewTodoItemView = BaseView.extend({
     },
     handleKeyup: function (e) {
         if (e.which === ENTER_KEY && e.currentTarget.value !== '') {
+            // add a new item to the collection
             this.model.get('todoItems').add({title: e.currentTarget.value.trim()});
             this.model.set('newValue', '');
         } else {
@@ -80,6 +84,7 @@ var NewTodoItemView = BaseView.extend({
 
 // contains two child views
 var TodoAppView = BaseView.extend({
+    // include two child view here
     childViews: {
         'js-new-todo': NewTodoItemView,
         'js-todo-item': TodoItemView
@@ -102,6 +107,7 @@ var TodoAppView = BaseView.extend({
     debugName: 'TodoAppView'
 });
 
+// TODO: What is the exact meaning of this part?
 var TodoItemCollection = BaseCollection.extend({
     model: BaseModel.extend(
         {},
@@ -111,7 +117,7 @@ var TodoItemCollection = BaseCollection.extend({
 
 var TodoAppModel = BaseModel.extend({
 
-    // declare an
+    // declare todoItems as a collection
     relations: {
         todoItems: TodoItemCollection
     },

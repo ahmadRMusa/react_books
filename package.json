@@ -1,0 +1,26 @@
+{
+  "name": "react_books",
+  "version": "1.0.0",
+  "description": "Using php to build a online book store",
+  "main": "index.js",
+  "dependencies": {
+    "tungstenjs": "^0.13.5"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbvictory/react_books.git"
+  },
+  "author": "jlou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sbvictory/react_books/issues"
+  },
+  "homepage": "https://github.com/sbvictory/react_books#readme"
+}

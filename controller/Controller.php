@@ -85,7 +85,12 @@ class Controller
 
     private function invokeView($target)
     {
-        include("../view/{$target}View.php");
+        if (file_exists("../view/{$target}View.php")) {
+            include("../view/{$target}View.php");
+        } else {
+            include("../view/{$target}View.html");
+        }
+
     }
 
 }
