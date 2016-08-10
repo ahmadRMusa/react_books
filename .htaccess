@@ -4,5 +4,7 @@ RewriteEngine On
 #RewriteRule index.php controller/relay.php
 
 RewriteCond %{REQUEST_URI} !=/controller/relay.php
-#RewriteRule .* controller/relay.php
+RewriteCond %{REQUEST_URI} !=/react_books/dist/bundle.js
+
 RewriteRule .* controller/relay.php
+#RewriteRule (?!\.js$) controller/relay.php
